@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mcms_app/screens/Dashboard.dart';
+import 'package:mcms_app/screens/dashboard.dart';
 
 void main() => runApp(MyApp());
 

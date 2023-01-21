@@ -26,7 +26,7 @@ class Dashboard extends StatelessWidget {
             margin: EdgeInsets.only(top: 30.0, bottom: 20.0),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.grey, width: 6.0),
+              border: Border.all(color: Colors.green, width: 6.0),
               image: DecorationImage(image: AssetImage(drPic),),
             ),
           ),
@@ -42,13 +42,23 @@ class Dashboard extends StatelessWidget {
             shrinkWrap: true,
             itemCount: views.length,
             itemBuilder: (context, index){
-              return ListTile(
-                onTap: (){},
-                tileColor: Colors.green,
-                leading: CircleAvatar(child: Icon(icons[index]),),
-                title: Text(views[index]),
-                subtitle: Text(viewDetails[index]),
-                trailing: const CircleAvatar(child: Icon(Icons.forward),),
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10.0, left: 12.0, right: 12.0),
+                child: ListTile(
+                  onTap: (){},
+                  tileColor: Colors.lightGreenAccent,
+                  shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: const BorderSide(
+                      width: 1.0,
+                      color: Colors.green,
+                    )
+                  ),
+                  leading: CircleAvatar(child: Icon(icons[index]),),
+                  title: Text(views[index]),
+                  subtitle: Text(viewDetails[index]),
+                  trailing: const CircleAvatar(child: Icon(Icons.forward),),
+                ),
               );
             },
           ),
