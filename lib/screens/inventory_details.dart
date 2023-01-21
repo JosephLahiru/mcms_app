@@ -5,6 +5,14 @@ class InventoryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Inventory Details"),
+      ),
+      body: const Center(
+        child: Text("Inventory Details"),
+      ),
+    );
   }
 }
