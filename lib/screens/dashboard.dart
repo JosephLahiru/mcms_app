@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:mcms_app/screens/reports.dart';
+
+import '../widgets/ListWidget.dart';
+import 'inventory_details.dart';
+import 'notifications.dart';
 
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 
   List<String> views = ["Notifications", "Inventory Level", "Reports"];
-  List<String> viewDetails = ["3 Products about to expire", "Full inventory", "19th Jan 2023 Report Available"];
-  List<IconData> icons = [Icons.notifications, Icons.inventory, Icons.document_scanner];
+  List<String> viewDetails = [
+    "3 Products about to expire",
+    "Full inventory",
+    "19th Jan 2023 Report Available"
+  ];
+  List<IconData> icons = [
+    Icons.notifications,
+    Icons.inventory,
+    Icons.document_scanner
+  ];
 
   String drName = "Harsha";
   String drPic = "assets/images/dr.png";
@@ -27,40 +40,41 @@ class Dashboard extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: Colors.green, width: 6.0),
-              image: DecorationImage(image: AssetImage(drPic),),
+              image: DecorationImage(
+                image: AssetImage(drPic),
+              ),
             ),
           ),
           Container(
             padding: EdgeInsets.only(bottom: 30.0),
-              child: Text("Welcome Dr. $drName",
-                style: const TextStyle(fontSize: 30,
-                    fontWeight: FontWeight.bold),
-              ),
+            child: Text(
+              "Welcome Dr. $drName",
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
           ),
-          ListView.builder(
+          ListView(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: views.length,
-            itemBuilder: (context, index){
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10.0, left: 12.0, right: 12.0),
-                child: ListTile(
-                  onTap: (){},
-                  tileColor: Colors.lightGreenAccent,
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: const BorderSide(
-                      width: 1.0,
-                      color: Colors.green,
-                    )
-                  ),
-                  leading: CircleAvatar(child: Icon(icons[index]),),
-                  title: Text(views[index]),
-                  subtitle: Text(viewDetails[index]),
-                  trailing: const CircleAvatar(child: Icon(Icons.forward),),
-                ),
-              );
-            },
+            children: [
+              ListWidget(
+                title: views[0],
+                subtitle: viewDetails[0],
+                leadingIcon: icons[0],
+                screen: const Notifications(),
+              ),
+              ListWidget(
+                title: views[1],
+                subtitle: viewDetails[1],
+                leadingIcon: icons[1],
+                screen: const InventoryDetails(),
+              ),
+              ListWidget(
+                title: views[2],
+                subtitle: viewDetails[2],
+                leadingIcon: icons[2],
+                screen: const Reports(),
+              ),
+            ],
           ),
         ],
       ),
