@@ -85,3 +85,5 @@ lint/tmp/
 # lint/reports/
 .DS_Store
 .dart_tool/
+.dart_tool/package_config.json
+.dart_tool/package_config_subset
