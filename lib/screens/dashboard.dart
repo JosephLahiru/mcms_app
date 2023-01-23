@@ -30,32 +30,30 @@ class Dashboard extends StatelessWidget {
         title: const Text('Dashboard'),
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
         children: [
-          Container(
-            width: 200,
-            height: 200,
-            padding: const EdgeInsets.all(20.0),
-            margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.green, width: 6.0),
-              image: DecorationImage(
-                image: AssetImage(drPic),
-              ),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(bottom: 30.0),
-            child: Text(
-              "Welcome Dr. $drName",
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ),
-          ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
+          Column(
             children: [
+              Container(
+                width: 200,
+                height: 200,
+                padding: const EdgeInsets.all(20.0),
+                margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.green, width: 6.0),
+                  image: DecorationImage(
+                    image: AssetImage(drPic),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(bottom: 30.0),
+                child: Text(
+                  "Welcome Dr. $drName",
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+              ),
               ListWidget(
                 title: views[0],
                 subtitle: viewDetails[0],
