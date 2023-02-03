@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/screens/dashboard.dart';
 
+String splashImg = "assets/images/logo.jpeg";
+
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
   @override
@@ -15,17 +17,29 @@ class _SplashState extends State<Splash> {
   }
 
   _navigateToHome() async {
-    await Future.delayed(const Duration(microseconds: 1500), () {});
-    Navigator.push(
+    await Future.delayed(Duration(milliseconds: 1500), () {});
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => Dashboard(),
+        builder: (context) {
+          return Dashboard();
+        },
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(splashImg),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
