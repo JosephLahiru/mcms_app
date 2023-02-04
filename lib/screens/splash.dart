@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/screens/dashboard.dart';
 
-String splashImg = "assets/images/logo.jpeg";
+String splashImg = "assets/images/heart.png";
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
