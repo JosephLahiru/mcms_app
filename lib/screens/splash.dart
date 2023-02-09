@@ -32,12 +32,25 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(splashImg),
+        child: Column(
+          children: [
+            Container(
+              height: 250,
+              width: 250,
+              padding: const EdgeInsets.all(20.0),
+              margin: const EdgeInsets.only(top: 250.0, bottom: 20.0),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(splashImg),
+                ),
+              ),
             ),
-          ),
+            Text(
+              "Medical Center Management System",
+              style: Theme.of(context).textTheme.headline4,
+              textAlign: TextAlign.center,
+            )
+          ],
         ),
       ),
     );
