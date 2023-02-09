@@ -14,7 +14,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    //_navigateToHome();
+    _navigateToHome();
   }
 
   _navigateToHome() async {
@@ -89,7 +89,10 @@ class _SplashState extends State<Splash> {
                   ),
                   child: Text(
                     "Created By Metatron",
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall
+                        ?.copyWith(color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
                 ),
