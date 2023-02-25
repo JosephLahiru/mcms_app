@@ -64,6 +64,69 @@ class Reports extends StatelessWidget {
                     ),
                   ],
                 ),
+                child: Container(
+                  padding: const EdgeInsets.only(top: 40.0, left: 20.0, right: 20.0 , bottom: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "New Report",
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: color.AppColors.nonary,
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      Text(
+                        "19th Jan 2023",
+                        style: TextStyle(
+                          fontSize: 35.0,
+                          color: color.AppColors.nonary,
+                        ),
+                      ),
+                      SizedBox(height: 25.0),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "View Report",
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: color.AppColors.nonary,
+                                ),
+                              ),
+                              Icon(
+                                Icons.read_more_outlined,
+                                color: color.AppColors.nonary,
+                                size: 30.0,
+                              ),
+                            ],
+                          ),
+                          Expanded(child: Container()),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: color.AppColors.gradientpurplefirst.withOpacity(0.8),
+                                  blurRadius: 10,
+                                  offset: Offset(4, 8), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Icon(
+                              Icons.play_circle_fill_outlined,
+                              color: color.AppColors.white,
+                              size: 50.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
