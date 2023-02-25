@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 
-import '../screens/reports.dart';
-
 class ListWidget extends StatelessWidget {
   final Widget screen;
   String title, subtitle;
   IconData leadingIcon, trailingIcon;
   Color listTileColor, iconColor, listTileBorderColor;
 
-  ListWidget(
-      {super.key,
-      required this.title,
-      required this.subtitle,
-      this.leadingIcon = Icons.label,
-      this.trailingIcon = Icons.forward,
-      this.listTileColor = Colors.lightGreenAccent,
-      this.iconColor = Colors.lightBlue,
-      this.listTileBorderColor = Colors.green,
-      required this.screen});
+  ListWidget({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    this.leadingIcon = Icons.label,
+    this.trailingIcon = Icons.forward,
+    this.listTileColor = Colors.lightGreenAccent,
+    this.iconColor = Colors.lightBlue,
+    this.listTileBorderColor = Colors.green,
+    required this.screen,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +44,8 @@ class ListWidget extends StatelessWidget {
         leading: CircleAvatar(
           child: Icon(leadingIcon),
         ),
-        title: Text(title),
-        subtitle: Text(subtitle),
+        title: Text(title, style: Theme.of(context).textTheme.headline5),
+        subtitle: Text(subtitle, style: Theme.of(context).textTheme.subtitle1),
         trailing: CircleAvatar(
           child: Icon(trailingIcon),
         ),
