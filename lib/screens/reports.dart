@@ -29,11 +29,18 @@ class Reports extends StatelessWidget {
                   Expanded(child: Container()),
                   Icon(
                     Icons.arrow_back_ios, color: color.AppColors.grey, size: 30.0,),
+                  SizedBox(width: 10.0),
                   Icon(
                     Icons.calendar_today_outlined, color: color.AppColors.grey, size: 30.0,),
+                  SizedBox(width: 15.0),
                   Icon(
                     Icons.arrow_forward_ios, color: color.AppColors.grey, size: 30.0,),
                 ],
+              ),
+              SizedBox(height: 30),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
               ),
             ],
           ),
