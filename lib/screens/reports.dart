@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 
 class Reports extends StatelessWidget {
   const Reports({Key? key}) : super(key: key);
@@ -127,6 +128,12 @@ class Reports extends StatelessWidget {
                     ],
                   ),
                 ),
+              ),
+              SizedBox(height: 30),
+              CalendarDatePicker2(
+                config: CalendarDatePicker2Config(),
+                initialValue: [],
+                on
               ),
             ],
           ),
