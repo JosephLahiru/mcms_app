@@ -19,25 +19,22 @@ class Reports extends StatelessWidget {
         centerTitle: true,
         title: Text('Reports'),
       ),
-      body: Center(
-        child: DataTable(
-          columns: [
-            DataColumn(label: Text('Report')),
-            DataColumn(label: Text('Description')),
-            DataColumn(label: Text('Date')),
+      body: Container(
+        padding: const EdgeInsets.only(),
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 200,
+              //add red color square
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            )
           ],
-          rows: List.generate(
-            data.length,
-                (index) => DataRow(
-              cells: [
-                DataCell(Text(data[index].report)),
-                DataCell(Text(data[index].description)),
-                DataCell(Text(data[index].date)),
-              ],
-            ),
-          ),
         ),
-      ),
+      )
     );
   }
 }
