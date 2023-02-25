@@ -34,4 +34,8 @@ class AppColors {
   static const Color transparent = Color(0x00000000);
   static const Color transparentWhite = Color(0x80FFFFFF);
   static const Color transparentBlack = Color(0x80000000);
+  static const Color transparentGrey = Color(0x809E9E9E);
+  static const Color transparentRed = Color(0x80D32F2F);
+  static const Color gradientpurplefirst = Color(0xFF7B1FA2);
+  static const Color gradientpurplesecond = Color(0xFF7C4DFF);
 }

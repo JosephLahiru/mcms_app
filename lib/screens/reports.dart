@@ -40,7 +40,30 @@ class Reports extends StatelessWidget {
               SizedBox(height: 30),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 200,
+                height: 220,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      color.AppColors.gradientpurplefirst.withOpacity(0.8),
+                      color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(80.0),
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      blurRadius: 10,
+                      offset: Offset(5, 10), // changes position of shadow
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
