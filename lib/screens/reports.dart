@@ -132,7 +132,14 @@ class Reports extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: color.AppColors.gradientpurplefirst.withOpacity(0.7),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      color.AppColors.gradientpurplefirst.withOpacity(0.8),
+                      color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                    ],
+                  ),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10.0),
                     topRight: Radius.circular(10.0),
@@ -141,9 +148,7 @@ class Reports extends StatelessWidget {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
-                      blurRadius: 10,
-                      offset: Offset(5, 10), // changes position of shadow
+                      // changes position of shadow
                     ),
                   ],
                 ),
