@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 
 class Reports extends StatelessWidget {
   const Reports({Key? key}) : super(key: key);
@@ -130,10 +129,32 @@ class Reports extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30),
-              CalendarDatePicker2(
-                config: CalendarDatePicker2Config(),
-                initialValue: [],
-                on
+              Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: color.AppColors.gradientpurplefirst.withOpacity(0.7),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      blurRadius: 10,
+                      offset: Offset(5, 10), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: CalendarDatePicker(
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2023),
+                  lastDate: DateTime(2030),
+                  onDateChanged: (date) {
+                    print(date);
+                  },
+                ),
               ),
             ],
           ),
