@@ -14,12 +14,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "calendar_date_picker2",
-      "rootUri": "file:///D:/Android/flutter/.pub-cache/hosted/pub.dartlang.org/calendar_date_picker2-0.4.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.16"
-    },
-    {
       "name": "characters",
       "rootUri": "file:///D:/Android/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.2.1",
       "packageUri": "lib/",
@@ -158,7 +152,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-02-25T18:30:51.104481Z",
+  "generated": "2023-02-26T09:05:46.270103Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }

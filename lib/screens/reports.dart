@@ -147,13 +147,31 @@ class Reports extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: CalendarDatePicker(
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2023),
-                  lastDate: DateTime(2030),
-                  onDateChanged: (date) {
-                    print(date);
-                  },
+                child: Container(
+                  padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0 , bottom: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Text(
+                          "Select Date To View Report",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: color.AppColors.septenary,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      CalendarDatePicker(
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2023),
+                        lastDate: DateTime(2030),
+                        onDateChanged: (date) {
+                          print(date);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
