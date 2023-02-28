@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
+import 'package:mcms_app/screens/dashboard.dart';
+import 'package:mcms_app/util/rive_utils.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 
-class Reports extends StatelessWidget {
+class Reports extends StatefulWidget {
   const Reports({Key? key}) : super(key: key);
+
+  @override
+  State<Reports> createState() => _ReportsState();
+}
+
+class _ReportsState extends State<Reports>{
+  late SMIBool searchTigger;
+  RiveUtils riveUtils = RiveUtils();
 
   @override
   Widget build(BuildContext context) {
@@ -199,11 +209,31 @@ class Reports extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
+                GestureDetector(
+                  onTap:(){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Dashboard()),
+                    );
+                  },
+                  child: SizedBox(
+                    width: 36,
+                    height: 36,
+                    child: RiveAnimation.asset(
+                      "assets/RiveAssets/icons. riv",
+                      artboard: "SEARCH",
+                      onInit: (artboard) {
+                        StateMachineController controller =
+                        riveUtils.getRiveController(artboard, StateMachineName: "SEARCH_Interactivityt");
+                      },
+                    ) ,
+                  ),
+                ),
               ],
             ),
           ),
         ),
     );
   }
+
 }
