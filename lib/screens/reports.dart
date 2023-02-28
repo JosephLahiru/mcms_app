@@ -31,7 +31,7 @@ class Reports extends StatelessWidget {
                     Icons.arrow_back_ios, color: color.AppColors.grey, size: 30.0,),
                   SizedBox(width: 10.0),
                   Icon(
-                    Icons.calendar_today_outlined, color: color.AppColors.grey, size: 30.0,),
+                    Icons.attach_money_outlined, color: color.AppColors.grey, size: 30.0,),
                   SizedBox(width: 15.0),
                   Icon(
                     Icons.arrow_forward_ios, color: color.AppColors.grey, size: 30.0,),
@@ -148,7 +148,9 @@ class Reports extends StatelessWidget {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      // changes position of shadow
+                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      blurRadius: 40,
+                      offset: Offset(8, 10),
                     ),
                   ],
                 ),
@@ -181,7 +183,59 @@ class Reports extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          margin: const EdgeInsets.symmetric(horizontal: 24),
+          decoration: BoxDecoration(
+            color: color.AppColors.darkGrey,
+            borderRadius: BorderRadius.all(Radius.circular(24),),
+            boxShadow: [
+              BoxShadow(
+                color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                blurRadius: 40,
+                offset: Offset(8, 10),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/dashboard');
+                },
+                icon: Icon(
+                  Icons.home_outlined,
+                  color: color.AppColors.grey,
+                  size: 30.0,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/reports');
+                },
+                icon: Icon(
+                  Icons.insert_chart_outlined,
+                  color: color.AppColors.grey,
+                  size: 30.0,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings');
+                },
+                icon: Icon(
+                  Icons.settings_outlined,
+                  color: color.AppColors.grey,
+                  size: 30.0,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
