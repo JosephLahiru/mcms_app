@@ -5,6 +5,8 @@ import '../widgets/ListWidget.dart';
 import 'inventory_details.dart';
 import 'notifications.dart';
 
+import '../assets/color.dart' as color;
+
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 
@@ -28,7 +30,42 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(Icons.menu),
+        //     onPressed: () {},
+        //   ),
+        // ],
+        elevation: 0,
         centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text("Dr. Harsha"),
+              accountEmail: Text("harsha@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                foregroundImage: AssetImage(drPic),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.notifications),
+              title: Text("Notifications"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.inventory),
+              title: Text("Inventory"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.document_scanner),
+              title: Text("Reports"),
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
       body: ListView(
         children: [
@@ -41,7 +78,7 @@ class Dashboard extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.green, width: 6.0),
+                  border: Border.all(color: color.AppColors.purple, width: 6.0),
                   image: DecorationImage(
                     image: AssetImage(drPic),
                   ),
@@ -59,18 +96,24 @@ class Dashboard extends StatelessWidget {
                 subtitle: viewDetails[0],
                 leadingIcon: icons[0],
                 screen: const Notifications(),
+                listTileColor: color.AppColors.gradientpurplesecond,
+                listTileBorderColor: color.AppColors.gradientpurplefirst,
               ),
               ListWidget(
                 title: views[1],
                 subtitle: viewDetails[1],
                 leadingIcon: icons[1],
                 screen: const InventoryDetails(),
+                listTileColor: color.AppColors.gradientpurplesecond,
+                listTileBorderColor: color.AppColors.gradientpurplefirst,
               ),
               ListWidget(
                 title: views[2],
                 subtitle: viewDetails[2],
                 leadingIcon: icons[2],
                 screen: const Reports(),
+                listTileColor: color.AppColors.gradientpurplesecond,
+                listTileBorderColor: color.AppColors.gradientpurplefirst,
               ),
             ],
           ),
