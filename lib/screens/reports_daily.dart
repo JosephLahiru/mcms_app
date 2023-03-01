@@ -7,14 +7,14 @@ import 'package:mcms_app/util/rive_utils.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 
-class Reports extends StatefulWidget {
-  const Reports({Key? key}) : super(key: key);
+class Reports_Daily extends StatefulWidget {
+  const Reports_Daily({Key? key}) : super(key: key);
 
   @override
-  State<Reports> createState() => _ReportsState();
+  State<Reports_Daily> createState() => _Reports_Daily();
 }
 
-class _ReportsState extends State<Reports>{
+class _Reports_Daily extends State<Reports_Daily>{
   RiveAsset selectedBottomNav = bottomNavs.first;
 
   @override

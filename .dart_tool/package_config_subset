@@ -50,6 +50,10 @@ http_parser
 2.12
 file:///D:/Android/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.2/
 file:///D:/Android/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.2/lib/
+intl
+2.12
+file:///D:/Android/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/
+file:///D:/Android/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib/
 lints
 2.17
 file:///D:/Android/flutter/.pub-cache/hosted/pub.dartlang.org/lints-2.0.1/
@@ -136,6 +140,6 @@ file:///D:/Android/flutter/packages/flutter_test/
 file:///D:/Android/flutter/packages/flutter_test/lib/
 mcms_app
 2.18
-file:///D:/workspace/AndroidStudio/
-file:///D:/workspace/AndroidStudio/lib/
+file:///D:/workspace/MCMS_APP/
+file:///D:/workspace/MCMS_APP/lib/
 2

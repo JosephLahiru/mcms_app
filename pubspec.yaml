@@ -39,6 +39,7 @@ dependencies:
   font_awesome_flutter: ^10.3.0
   rive: ^0.9.1
   flutter_svg: ^1.1.6
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
