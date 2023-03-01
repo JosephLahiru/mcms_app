@@ -42,10 +42,11 @@ class Dashboard extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
-              padding: EdgeInsets.all(0),
-              child: Container(
-                color: color.AppColors.tertiary,
+            UserAccountsDrawerHeader(
+              accountName: Text("Dr. Harsha"),
+              accountEmail: Text("harsha@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                foregroundImage: AssetImage(drPic),
               ),
             ),
             ListTile(
