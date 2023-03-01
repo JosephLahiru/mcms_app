@@ -3,6 +3,7 @@ import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/components/animated_bar.dart';
 import 'package:mcms_app/modal/rive_asset.dart';
 import 'package:mcms_app/screens/dashboard.dart';
+import 'package:mcms_app/screens/view_report.dart';
 import 'package:mcms_app/util/rive_utils.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
@@ -125,7 +126,12 @@ class _Reports_Daily extends State<Reports_Daily>{
                         firstDate: DateTime(2023),
                         lastDate: DateTime(2030),
                         onDateChanged: (date) {
-                          print(date);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => View_Report(selectedDate: date),
+                            ),
+                          );
                         },
                       ),
                     ],

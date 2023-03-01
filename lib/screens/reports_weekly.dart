@@ -28,6 +28,7 @@ class _Reports_Weekly extends State<Reports_Weekly>{
           padding: const EdgeInsets.only(top: 70.0, left: 30.0, right: 30.0),
           child: Column(
             children: [
+              //header
               Row (
                 children: [
                   Text(
@@ -54,38 +55,11 @@ class _Reports_Weekly extends State<Reports_Weekly>{
               SizedBox(height: 30),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 220,
+                height: 100,
                 decoration: BoxDecoration(
                   gradient: flutter_gradient.LinearGradient(
                     begin: Alignment.bottomLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                      color.AppColors.gradientpurplesecond.withOpacity(0.9),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(80.0),
-                    bottomLeft: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
-                      blurRadius: 10,
-                      offset: Offset(5, 10), // changes position of shadow
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 30),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  gradient: flutter_gradient.LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.centerRight,
+                    end: Alignment.topRight,
                     colors: [
                       color.AppColors.gradientpurplefirst.withOpacity(0.8),
                       color.AppColors.gradientpurplesecond.withOpacity(0.9),
@@ -100,36 +74,10 @@ class _Reports_Weekly extends State<Reports_Weekly>{
                   boxShadow: [
                     BoxShadow(
                       color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
-                      blurRadius: 40,
-                      offset: Offset(8, 10),
+                      blurRadius: 10,
+                      offset: Offset(5, 10), // changes position of shadow
                     ),
                   ],
-                ),
-                child: Container(
-                  padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0 , bottom: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Text(
-                          "Select Date To View Report",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: color.AppColors.septenary,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10.0),
-                      CalendarDatePicker(
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2023),
-                        lastDate: DateTime(2030),
-                        onDateChanged: (date) {
-                          print(date);
-                        },
-                      ),
-                    ],
-                  ),
                 ),
               ),
             ],
