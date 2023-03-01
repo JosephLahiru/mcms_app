@@ -6,6 +6,7 @@ import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/util/rive_utils.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Reports extends StatefulWidget {
   const Reports({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class _ReportsState extends State<Reports>{
                       Icons.arrow_back_ios, color: color.AppColors.grey, size: 30.0,),
                     SizedBox(width: 10.0),
                     Icon(
-                      Icons.attach_money_outlined, color: color.AppColors.grey, size: 30.0,),
+                      FontAwesomeIcons.book, color: color.AppColors.grey, size: 30.0,),
                     SizedBox(width: 15.0),
                     Icon(
                       Icons.arrow_forward_ios, color: color.AppColors.grey, size: 30.0,),
@@ -111,10 +112,13 @@ class _ReportsState extends State<Reports>{
                                     color: color.AppColors.nonary,
                                   ),
                                 ),
+                                SizedBox(
+                                  width: 5.0,
+                                ),
                                 Icon(
-                                  Icons.read_more_outlined,
+                                  FontAwesomeIcons.arrowUpRightFromSquare,
                                   color: color.AppColors.nonary,
-                                  size: 30.0,
+                                  size: 15.0,
                                 ),
                               ],
                             ),
@@ -145,9 +149,10 @@ class _ReportsState extends State<Reports>{
                 SizedBox(height: 30),
                 Container(
                   width: MediaQuery.of(context).size.width,
+                  height: 70,
                   decoration: BoxDecoration(
                     gradient: flutter_gradient.LinearGradient(
-                      begin: Alignment.topLeft,
+                      begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
                         color.AppColors.gradientpurplefirst.withOpacity(0.8),
@@ -155,16 +160,16 @@ class _ReportsState extends State<Reports>{
                       ],
                     ),
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0),
-                      bottomLeft: Radius.circular(10.0),
-                      bottomRight: Radius.circular(10.0),
+                      topLeft: Radius.circular(20.0),
+                      topRight: Radius.circular(20.0),
+                      bottomLeft: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
                     ),
                     boxShadow: [
                       BoxShadow(
                         color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
-                        blurRadius: 40,
-                        offset: Offset(8, 10),
+                        blurRadius: 10,
+                        offset: Offset(5, 10), // changes position of shadow
                       ),
                     ],
                   ),
@@ -173,23 +178,150 @@ class _ReportsState extends State<Reports>{
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
-                          child: Text(
-                            "Select Date To View Report",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: color.AppColors.septenary,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.fileContract,
+                                  color: color.AppColors.secondary,
+                                  size: 30.0,
+                                ),
+                                SizedBox(
+                                  width: 20.0,
+                                ),
+                                Text(
+                                  "View Daily Report",
+                                  style: TextStyle(
+                                    fontSize: 25.0,
+                                    color: color.AppColors.nonary,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
+                          ],
                         ),
-                        SizedBox(height: 10.0),
-                        CalendarDatePicker(
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2023),
-                          lastDate: DateTime(2030),
-                          onDateChanged: (date) {
-                            print(date);
-                          },
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    gradient: flutter_gradient.LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        color.AppColors.gradientpurplefirst.withOpacity(0.8),
+                        color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20.0),
+                      topRight: Radius.circular(20.0),
+                      bottomLeft: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                        blurRadius: 10,
+                        offset: Offset(5, 10), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0 , bottom: 20.0),
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.fileContract,
+                                  color: color.AppColors.tertiary,
+                                  size: 30.0,
+                                ),
+                                SizedBox(
+                                  width: 20.0,
+                                ),
+                                Text(
+                                  "View Weekly Report",
+                                  style: TextStyle(
+                                    fontSize: 25.0,
+                                    color: color.AppColors.nonary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    gradient: flutter_gradient.LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        color.AppColors.gradientpurplefirst.withOpacity(0.8),
+                        color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20.0),
+                      topRight: Radius.circular(20.0),
+                      bottomLeft: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                        blurRadius: 10,
+                        offset: Offset(5, 10), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0 , bottom: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.fileContract,
+                                  color: color.AppColors.octonary,
+                                  size: 30.0,
+                                ),
+                                SizedBox(
+                                  width: 20.0,
+                                ),
+                                Text(
+                                  "View Monthly Report",
+                                  style: TextStyle(
+                                    fontSize: 25.0,
+                                    color: color.AppColors.nonary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
