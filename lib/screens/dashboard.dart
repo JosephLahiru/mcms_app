@@ -29,10 +29,6 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {},
-        ),
         title: const Text('Dashboard'),
         // actions: [
         //   IconButton(
@@ -42,6 +38,33 @@ class Dashboard extends StatelessWidget {
         // ],
         elevation: 0,
         centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              padding: EdgeInsets.all(0),
+              child: Container(
+                color: color.AppColors.tertiary,
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.notifications),
+              title: Text("Notifications"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.inventory),
+              title: Text("Inventory"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.document_scanner),
+              title: Text("Reports"),
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
       body: ListView(
         children: [
