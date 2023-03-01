@@ -9,12 +9,22 @@ import "package:rive/rive.dart";
 //     return controller;
 //   }
 // }
+// class RiveUtils {
+//   StateMachineController getRiveController(
+//       Artboard artboard,
+//       {String StateMachineName = "State Machine 1"}) {
+//     StateMachineController? controller = StateMachineController.fromArtboard(
+//         artboard, StateMachineName);
+//     artboard.addController(controller!);
+//     return controller;
+//   }
+// }
+
 class RiveUtils {
-  StateMachineController getRiveController(
-      Artboard artboard,
-      {String StateMachineName = "State Machine 1"}) {
-    StateMachineController? controller = StateMachineController.fromArtboard(
-        artboard, StateMachineName);
+  static StateMachineController getRiveController(Artboard artboard,
+      {stateMachineName = "State Machine 1"}) {
+    StateMachineController? controller =
+    StateMachineController.fromArtboard(artboard, stateMachineName);
     artboard.addController(controller!);
     return controller;
   }
