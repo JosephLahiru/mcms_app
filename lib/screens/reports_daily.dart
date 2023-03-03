@@ -3,18 +3,19 @@ import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/components/animated_bar.dart';
 import 'package:mcms_app/modal/rive_asset.dart';
 import 'package:mcms_app/screens/dashboard.dart';
+import 'package:mcms_app/screens/view_report.dart';
 import 'package:mcms_app/util/rive_utils.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 
-class Reports extends StatefulWidget {
-  const Reports({Key? key}) : super(key: key);
+class Reports_Daily extends StatefulWidget {
+  const Reports_Daily({Key? key}) : super(key: key);
 
   @override
-  State<Reports> createState() => _ReportsState();
+  State<Reports_Daily> createState() => _Reports_Daily();
 }
 
-class _ReportsState extends State<Reports>{
+class _Reports_Daily extends State<Reports_Daily>{
   RiveAsset selectedBottomNav = bottomNavs.first;
 
   @override
@@ -125,7 +126,12 @@ class _ReportsState extends State<Reports>{
                         firstDate: DateTime(2023),
                         lastDate: DateTime(2030),
                         onDateChanged: (date) {
-                          print(date);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => View_Report(selectedDate: date),
+                            ),
+                          );
                         },
                       ),
                     ],
