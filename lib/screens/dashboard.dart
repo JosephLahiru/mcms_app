@@ -97,7 +97,7 @@ class Dashboard extends StatelessWidget {
                 leadingIcon: icons[0],
                 screen: const Notifications(),
                 listTileColor: color.AppColors.gradientpurplesecond,
-                listTileBorderColor: color.AppColors.gradientpurplefirst,
+                listTileBorderColor: color.AppColors.gradientpurplesecond,
               ),
               ListWidget(
                 title: views[1],
@@ -105,7 +105,7 @@ class Dashboard extends StatelessWidget {
                 leadingIcon: icons[1],
                 screen: const InventoryDetails(),
                 listTileColor: color.AppColors.gradientpurplesecond,
-                listTileBorderColor: color.AppColors.gradientpurplefirst,
+                listTileBorderColor: color.AppColors.gradientpurplesecond,
               ),
               ListWidget(
                 title: views[2],
@@ -113,7 +113,7 @@ class Dashboard extends StatelessWidget {
                 leadingIcon: icons[2],
                 screen: const Reports(),
                 listTileColor: color.AppColors.gradientpurplesecond,
-                listTileBorderColor: color.AppColors.gradientpurplefirst,
+                listTileBorderColor: color.AppColors.gradientpurplesecond,
               ),
             ],
           ),
