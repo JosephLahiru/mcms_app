@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/components/animated_bar.dart';
-import 'package:mcms_app/modal/rive_asset.dart';
+import 'package:mcms_app/model/rive_asset.dart';
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/util/rive_utils.dart';
 import 'package:rive/rive.dart';
@@ -14,13 +14,14 @@ class Reports_Weekly extends StatefulWidget {
   State<Reports_Weekly> createState() => _Reports_Weekly();
 }
 
-class _Reports_Weekly extends State<Reports_Weekly>{
+class _Reports_Weekly extends State<Reports_Weekly> {
   RiveAsset selectedBottomNav = bottomNavs.first;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final textColor = colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    final textColor =
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -29,7 +30,7 @@ class _Reports_Weekly extends State<Reports_Weekly>{
           child: Column(
             children: [
               //header
-              Row (
+              Row(
                 children: [
                   Text(
                     "Weekly Reports",
@@ -43,13 +44,22 @@ class _Reports_Weekly extends State<Reports_Weekly>{
                   ),
                   Expanded(child: Container()),
                   Icon(
-                    Icons.arrow_back_ios, color: color.AppColors.grey, size: 30.0,),
+                    Icons.arrow_back_ios,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                   SizedBox(width: 10.0),
                   Icon(
-                    Icons.attach_money_outlined, color: color.AppColors.grey, size: 30.0,),
+                    Icons.attach_money_outlined,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                   SizedBox(width: 15.0),
                   Icon(
-                    Icons.arrow_forward_ios, color: color.AppColors.grey, size: 30.0,),
+                    Icons.arrow_forward_ios,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                 ],
               ),
               SizedBox(height: 30),
@@ -73,7 +83,8 @@ class _Reports_Weekly extends State<Reports_Weekly>{
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      color:
+                          color.AppColors.gradientpurplesecond.withOpacity(0.2),
                       blurRadius: 10,
                       offset: Offset(5, 10), // changes position of shadow
                     ),

@@ -1,18 +1,46 @@
 import 'package:flutter/material.dart';
+import '../model/notifi.dart';
 
-class Notifications extends StatelessWidget {
+class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Notifications"),
-      ),
-      body: const Center(
-        child: Text("Notifications"),
-      ),
-    );
+  State<Notifications> createState() => _NotificationsState();
+}
+
+class _NotificationsState extends State<Notifications> {
+  List<Notifi> notifications = getNotifi();
+
+  static List<Notifi> getNotifi() {
+    const data = [
+      {"body": "Yo Was-sup?"},
+      {"body": "How Are you?"},
+    ];
+
+    return data.map<Notifi>(Notifi.fromJson).toList();
   }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: const Text("Notifications"),
+          centerTitle: true,
+        ),
+        body: Center(
+          child: buildNotifi(notifications),
+        ),
+      );
+
+  Widget buildNotifi(List<Notifi> notification) => ListView.builder(
+        itemCount: notifications.length,
+        itemBuilder: (context, index) {
+          final notification = notifications[index];
+          return Card(
+            child: ListTile(
+              leading: Icon(Icons.notifications),
+              title: Text(notification.body),
+            ),
+          );
+        },
+      );
 }
