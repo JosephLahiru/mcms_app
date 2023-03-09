@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '../model/notifi.dart';
+import '../widgets/ListWidget.dart';
+import '../assets/color.dart' as color;
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -47,16 +49,31 @@ class _NotificationsState extends State<Notifications> {
         ),
       );
 
-  Widget buildNotifi(List<Notifi> notifications) => ListView.builder(
-        itemCount: notifications.length,
-        itemBuilder: (context, index) {
-          final notification = notifications[index];
-          return Card(
-            child: ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text(notification.body),
+  Widget buildNotifi(List<Notifi> notifications) => Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Image.asset(
+              'assets/images/notifi.png',
+              height: 200.0,
+              width: 200.0,
             ),
-          );
-        },
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: notifications.length,
+              itemBuilder: (context, index) {
+                final notification = notifications[index];
+                return ListWidget(
+                  title: notification.category,
+                  subtitle: notification.body,
+                  screen: const Notifications(),
+                  listTileColor: color.AppColors.gradientpurplesecond,
+                  listTileBorderColor: color.AppColors.gradientpurplesecond,
+                );
+              },
+            ),
+          ),
+        ],
       );
 }
