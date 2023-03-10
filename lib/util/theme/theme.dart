@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 class MedAppTheme {
   static ThemeData lightTheme = ThemeData(
-    brightness: Brightness.light,
-    primarySwatch: Colors.deepPurple,
-  );
+      brightness: Brightness.light,
+      appBarTheme: AppBarTheme(color: Colors.purple));
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     textTheme: const TextTheme(

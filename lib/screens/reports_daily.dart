@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/components/animated_bar.dart';
-import 'package:mcms_app/modal/rive_asset.dart';
+import 'package:mcms_app/model/rive_asset.dart';
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/view_report.dart';
 import 'package:mcms_app/util/rive_utils.dart';
@@ -15,13 +15,14 @@ class Reports_Daily extends StatefulWidget {
   State<Reports_Daily> createState() => _Reports_Daily();
 }
 
-class _Reports_Daily extends State<Reports_Daily>{
+class _Reports_Daily extends State<Reports_Daily> {
   RiveAsset selectedBottomNav = bottomNavs.first;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final textColor = colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    final textColor =
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -29,7 +30,7 @@ class _Reports_Daily extends State<Reports_Daily>{
           padding: const EdgeInsets.only(top: 70.0, left: 30.0, right: 30.0),
           child: Column(
             children: [
-              Row (
+              Row(
                 children: [
                   Text(
                     "Daily Reports",
@@ -43,13 +44,22 @@ class _Reports_Daily extends State<Reports_Daily>{
                   ),
                   Expanded(child: Container()),
                   Icon(
-                    Icons.arrow_back_ios, color: color.AppColors.grey, size: 30.0,),
+                    Icons.arrow_back_ios,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                   SizedBox(width: 10.0),
                   Icon(
-                    Icons.attach_money_outlined, color: color.AppColors.grey, size: 30.0,),
+                    Icons.attach_money_outlined,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                   SizedBox(width: 15.0),
                   Icon(
-                    Icons.arrow_forward_ios, color: color.AppColors.grey, size: 30.0,),
+                    Icons.arrow_forward_ios,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                 ],
               ),
               SizedBox(height: 30),
@@ -73,7 +83,8 @@ class _Reports_Daily extends State<Reports_Daily>{
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      color:
+                          color.AppColors.gradientpurplesecond.withOpacity(0.2),
                       blurRadius: 10,
                       offset: Offset(5, 10), // changes position of shadow
                     ),
@@ -100,14 +111,16 @@ class _Reports_Daily extends State<Reports_Daily>{
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      color:
+                          color.AppColors.gradientpurplesecond.withOpacity(0.2),
                       blurRadius: 40,
                       offset: Offset(8, 10),
                     ),
                   ],
                 ),
                 child: Container(
-                  padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0 , bottom: 20.0),
+                  padding: const EdgeInsets.only(
+                      top: 20.0, left: 20.0, right: 20.0, bottom: 20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -129,7 +142,8 @@ class _Reports_Daily extends State<Reports_Daily>{
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => View_Report(selectedDate: date),
+                              builder: (context) =>
+                                  View_Report(selectedDate: date),
                             ),
                           );
                         },
