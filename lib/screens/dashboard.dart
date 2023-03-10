@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/screens/reports.dart';
 
-import '../widgets/ListWidget.dart';
 import 'inventory_details.dart';
 import 'notifications.dart';
 
@@ -12,17 +11,7 @@ class Dashboard extends StatelessWidget {
 
   List<Widget> screens = [Notifications(), InventoryDetails(), Reports()];
   List<String> views = ["Notifications", "Inventory Level", "Reports"];
-  List<String> viewDetails = [
-    "3 Products about to expire",
-    "Full inventory",
-    "19th Jan 2023 Report Available"
-  ];
-  List<IconData> icons = [
-    Icons.notifications,
-    Icons.inventory,
-    Icons.document_scanner
-  ];
-
+  List<String> images = ["notification.png", "Inventory.png", "report.png"];
   String drName = "Harsha";
   String drPic = "assets/images/dr.png";
 
@@ -31,19 +20,50 @@ class Dashboard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(Icons.menu),
-        //     onPressed: () {},
-        //   ),
-        // ],
-        elevation: 0,
-        centerTitle: true,
+        elevation: 6,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(120),
+            bottomRight: Radius.circular(380),
+          ),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(230),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    " Welcome\nDr. ${drName}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  CircleAvatar(
+                    radius: 70,
+                    backgroundImage: AssetImage(drPic),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 50,
+              )
+            ],
+          ),
+        ),
       ),
       drawer: Drawer(
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).appBarTheme.backgroundColor,
+              ),
               accountName: Text("Dr. Harsha"),
               accountEmail: Text("harsha@gmail.com"),
               currentAccountPicture: CircleAvatar(
@@ -70,41 +90,51 @@ class Dashboard extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Column(
-            children: [
-              Container(
-                width: 200,
-                height: 200,
-                padding: const EdgeInsets.all(20.0),
-                margin: const EdgeInsets.only(top: 30.0, bottom: 20.0),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: color.AppColors.purple, width: 6.0),
-                  image: DecorationImage(
-                    image: AssetImage(drPic),
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(bottom: 30.0),
-                child: Text(
-                  "Welcome Dr. $drName",
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ),
-            ],
-          ),
+          Padding(padding: EdgeInsets.only(top: 20)),
           Expanded(
-            child: ListView.builder(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+              ),
               itemCount: screens.length,
-              itemBuilder: (context, index) {
-                return ListWidget(
-                  title: views[index],
-                  subtitle: viewDetails[index],
-                  leadingIcon: icons[index],
-                  screen: screens[index],
-                  listTileColor: color.AppColors.gradientpurplesecond,
-                  listTileBorderColor: color.AppColors.gradientpurplesecond,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return screens[index];
+                        },
+                      ),
+                    );
+                  },
+                  child: Card(
+                    color: Theme.of(context).appBarTheme.backgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    elevation: 6,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/images/${images[index]}",
+                          height: 128.0,
+                          width: 128.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Text(
+                            views[index],
+                            style: TextStyle(color: Colors.white, fontSize: 25),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
             ),
