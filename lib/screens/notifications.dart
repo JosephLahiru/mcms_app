@@ -49,31 +49,36 @@ class _NotificationsState extends State<Notifications> {
         ),
       );
 
-  Widget buildNotifi(List<Notifi> notifications) => Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Image.asset(
-              'assets/images/notifi.png',
-              height: 200.0,
-              width: 200.0,
-            ),
+  Widget buildNotifi(List<Notifi> notifications) => Container(
+        alignment: Alignment.topCenter,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Image.asset(
+                  'assets/images/notifi.png',
+                  height: 200.0,
+                  width: 200.0,
+                ),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: notifications.length,
+                itemBuilder: (context, index) {
+                  final notification = notifications[index];
+                  return ListWidget(
+                    title: notification.category,
+                    subtitle: notification.body,
+                    screen: const Notifications(),
+                    listTileColor: color.AppColors.gradientpurplesecond,
+                    listTileBorderColor: color.AppColors.gradientpurplesecond,
+                  );
+                },
+              ),
+            ],
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: notifications.length,
-              itemBuilder: (context, index) {
-                final notification = notifications[index];
-                return ListWidget(
-                  title: notification.category,
-                  subtitle: notification.body,
-                  screen: const Notifications(),
-                  listTileColor: color.AppColors.gradientpurplesecond,
-                  listTileBorderColor: color.AppColors.gradientpurplesecond,
-                );
-              },
-            ),
-          ),
-        ],
+        ),
       );
 }

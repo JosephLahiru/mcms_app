@@ -10,6 +10,7 @@ import '../assets/color.dart' as color;
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 
+  List<Widget> screens = [Notifications(), InventoryDetails(), Reports()];
   List<String> views = ["Notifications", "Inventory Level", "Reports"];
   List<String> viewDetails = [
     "3 Products about to expire",
@@ -67,7 +68,7 @@ class Dashboard extends StatelessWidget {
           ],
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
           Column(
             children: [
@@ -91,31 +92,22 @@ class Dashboard extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
-              ListWidget(
-                title: views[0],
-                subtitle: viewDetails[0],
-                leadingIcon: icons[0],
-                screen: const Notifications(),
-                listTileColor: color.AppColors.gradientpurplesecond,
-                listTileBorderColor: color.AppColors.gradientpurplesecond,
-              ),
-              ListWidget(
-                title: views[1],
-                subtitle: viewDetails[1],
-                leadingIcon: icons[1],
-                screen: const InventoryDetails(),
-                listTileColor: color.AppColors.gradientpurplesecond,
-                listTileBorderColor: color.AppColors.gradientpurplesecond,
-              ),
-              ListWidget(
-                title: views[2],
-                subtitle: viewDetails[2],
-                leadingIcon: icons[2],
-                screen: const Reports(),
-                listTileColor: color.AppColors.gradientpurplesecond,
-                listTileBorderColor: color.AppColors.gradientpurplesecond,
-              ),
             ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: screens.length,
+              itemBuilder: (context, index) {
+                return ListWidget(
+                  title: views[index],
+                  subtitle: viewDetails[index],
+                  leadingIcon: icons[index],
+                  screen: screens[index],
+                  listTileColor: color.AppColors.gradientpurplesecond,
+                  listTileBorderColor: color.AppColors.gradientpurplesecond,
+                );
+              },
+            ),
           ),
         ],
       ),
