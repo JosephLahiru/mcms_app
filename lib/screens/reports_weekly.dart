@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
@@ -7,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
 import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports.dart';
-import 'package:mcms_app/screens/view_report.dart';
+import 'package:mcms_app/screens/view_weekly_report.dart';
 
 class Reports_Weekly extends StatefulWidget {
   const Reports_Weekly({Key? key}) : super(key: key);
@@ -171,7 +170,7 @@ class _Reports_Weekly extends State<Reports_Weekly> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  View_Report(selectedDate: date),
+                                  View_Weekly_Report(selectedDate: date),
                             ),
                           );
                         },
