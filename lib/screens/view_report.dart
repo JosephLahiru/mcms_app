@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/components/animated_bar.dart';
-import 'package:mcms_app/modal/rive_asset.dart';
+import 'package:mcms_app/model/rive_asset.dart';
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/util/rive_utils.dart';
 import 'package:rive/rive.dart';
@@ -11,13 +11,14 @@ import 'dart:convert';
 
 class View_Report extends StatefulWidget {
   final DateTime selectedDate;
+
   const View_Report({Key? key, required this.selectedDate}) : super(key: key);
 
   @override
   State<View_Report> createState() => _View_Report();
 }
 
-class _View_Report extends State<View_Report>{
+class _View_Report extends State<View_Report> {
   RiveAsset selectedBottomNav = bottomNavs.first;
   late Future<List<dynamic>> futureEarnings;
 
@@ -28,7 +29,8 @@ class _View_Report extends State<View_Report>{
   }
 
   Future<List<dynamic>> _fetchEarnings() async {
-    final response = await http.get(Uri.parse('http://158.101.10.103/get_earnings/${widget.selectedDate.toString().substring(0, 10)}'));
+    final response = await http.get(Uri.parse(
+        'http://158.101.10.103/get_earnings/${widget.selectedDate.toString().substring(0, 10)}'));
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
@@ -39,7 +41,8 @@ class _View_Report extends State<View_Report>{
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final textColor = colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    final textColor =
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -48,7 +51,7 @@ class _View_Report extends State<View_Report>{
           child: Column(
             children: [
               //header
-              Row (
+              Row(
                 children: [
                   Text(
                     "${widget.selectedDate.toString().substring(0, 10)} Report",
@@ -62,13 +65,22 @@ class _View_Report extends State<View_Report>{
                   ),
                   Expanded(child: Container()),
                   Icon(
-                    Icons.arrow_back_ios, color: color.AppColors.grey, size: 30.0,),
+                    Icons.arrow_back_ios,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                   SizedBox(width: 10.0),
                   Icon(
-                    Icons.attach_money_outlined, color: color.AppColors.grey, size: 30.0,),
+                    Icons.attach_money_outlined,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                   SizedBox(width: 15.0),
                   Icon(
-                    Icons.arrow_forward_ios, color: color.AppColors.grey, size: 30.0,),
+                    Icons.arrow_forward_ios,
+                    color: color.AppColors.grey,
+                    size: 30.0,
+                  ),
                 ],
               ),
               SizedBox(height: 30),
@@ -92,7 +104,8 @@ class _View_Report extends State<View_Report>{
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      color:
+                          color.AppColors.gradientpurplesecond.withOpacity(0.2),
                       blurRadius: 10,
                       offset: Offset(5, 10), // changes position of shadow
                     ),
@@ -106,7 +119,8 @@ class _View_Report extends State<View_Report>{
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data!.isEmpty) {
-                        return Center(child: Text("No data available for selected date"));
+                        return Center(
+                            child: Text("No data available for selected date"));
                       } else {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -115,7 +129,9 @@ class _View_Report extends State<View_Report>{
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("Date: "),
-                                Text(snapshot.data![0]["date"].toString().substring(0, 10)),
+                                Text(snapshot.data![0]["date"]
+                                    .toString()
+                                    .substring(0, 10)),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -131,7 +147,8 @@ class _View_Report extends State<View_Report>{
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("Actual Cost Free: "),
-                                Text(snapshot.data![0]["ac_cost_free"].toString()),
+                                Text(snapshot.data![0]["ac_cost_free"]
+                                    .toString()),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -147,7 +164,8 @@ class _View_Report extends State<View_Report>{
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("Actual Cost Paid: "),
-                                Text(snapshot.data![0]["ac_cost_paid"].toString()),
+                                Text(snapshot.data![0]["ac_cost_paid"]
+                                    .toString()),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -169,8 +187,8 @@ class _View_Report extends State<View_Report>{
                   },
                 ),
               ),
-            SizedBox(height: 30),
-            Text('Selected Date: ${widget.selectedDate}'),
+              SizedBox(height: 30),
+              Text('Selected Date: ${widget.selectedDate}'),
             ],
           ),
         ),
