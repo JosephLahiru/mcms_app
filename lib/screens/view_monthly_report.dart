@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/model/rive_asset.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -21,7 +20,6 @@ class View_Monthly_Report extends StatefulWidget {
 }
 
 class _View_Monthly_Report extends State<View_Monthly_Report> {
-  RiveAsset selectedBottomNav = bottomNavs.first;
   late Future<List<dynamic>> futureEarnings;
 
   @override
