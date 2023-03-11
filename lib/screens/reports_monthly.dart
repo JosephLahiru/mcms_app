@@ -4,7 +4,7 @@ import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
 import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports.dart';
-import 'package:mcms_app/screens/view_report.dart';
+import 'package:mcms_app/screens/view_monthly_report.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -170,7 +170,7 @@ class _Reports_Monthly extends State<Reports_Monthly> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  View_Report(selectedDate: date),
+                                  View_Monthly_Report(selectedDate: date),
                             ),
                           );
                         },
