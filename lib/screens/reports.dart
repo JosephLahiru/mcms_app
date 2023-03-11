@@ -176,6 +176,26 @@ class _ReportsState extends State<Reports> {
                 },
               ),
               SizedBox(height: 30),
+              //Image
+              Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 140,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.0),
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/figure3.png"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               //view daily report
               InkWell(
                 child: Container(
