@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/model/rive_asset.dart';
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
 import 'package:mcms_app/screens/notifications.dart';
@@ -21,7 +20,6 @@ class Reports extends StatefulWidget {
 }
 
 class _ReportsState extends State<Reports> {
-  RiveAsset selectedBottomNav = bottomNavs.first;
 
   @override
   Widget build(BuildContext context) {
