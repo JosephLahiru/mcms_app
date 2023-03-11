@@ -10,6 +10,7 @@ import 'package:mcms_app/screens/reports_weekly.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:mcms_app/screens/view_report.dart';
 import 'package:mcms_app/util/dateutil.dart';
 
 class Reports extends StatefulWidget {
@@ -70,7 +71,7 @@ class _ReportsState extends State<Reports> {
                       color: color.AppColors.grey,
                       size: 30.0,
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(height: 50),
@@ -176,7 +177,10 @@ class _ReportsState extends State<Reports> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Reports_Daily()),
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          View_Report(selectedDate: DateTime.now()),
+                    ),
                   );
                 },
               ),
