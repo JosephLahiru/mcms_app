@@ -46,6 +46,8 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
     final textColorBody =
     colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    final reportHeadingSize = 20.0;
+    final reportBodySize = 16.0;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -141,7 +143,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
               SizedBox(height: 30),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 100,
+                height: 450,
                 decoration: BoxDecoration(
                   gradient: flutter_gradient.LinearGradient(
                     begin: Alignment.bottomLeft,
@@ -160,90 +162,146 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                   boxShadow: [
                     BoxShadow(
                       color:
-                          color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      color.AppColors.gradientpurplesecond.withOpacity(0.2),
                       blurRadius: 10,
                       offset: Offset(5, 10), // changes position of shadow
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: 30),
-              Center(
-                child: FutureBuilder<List<dynamic>>(
-                  future: futureEarnings,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      if (snapshot.data!.isEmpty) {
-                        return Center(
-                            child: Text("No data available for selected date"));
-                      } else {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Date: "),
-                                Text(snapshot.data![0]["date"]
-                                    .toString()
-                                    .substring(0, 10)),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Free Amount: "),
-                                Text(snapshot.data![0]["free_amt"].toString()),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Actual Cost Free: "),
-                                Text(snapshot.data![0]["ac_cost_free"]
-                                    .toString()),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Paid Amount: "),
-                                Text(snapshot.data![0]["paid_amt"].toString()),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Actual Cost Paid: "),
-                                Text(snapshot.data![0]["ac_cost_paid"]
-                                    .toString()),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Profit: "),
-                                Text(snapshot.data![0]["profit"].toString()),
-                              ],
-                            ),
-                          ],
-                        );
-                      }
-                    } else if (snapshot.hasError) {
-                      return Text("${snapshot.error}");
-                    }
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 20.0, left: 30.0, right: 30.0),
+                    child: Center(
+                      child: FutureBuilder<List<dynamic>>(
+                        future: futureEarnings,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            if (snapshot.data!.isEmpty) {
+                              return Center(
+                                  child: Text("No data available for selected date"));
+                            } else {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Center(
+                                            child: Text("Report of The "+snapshot.data![0]["date"].toString().substring(0, 10), style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900,),)),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Date: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text(snapshot.data![0]["date"].toString().substring(0, 10), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Selling Price of Freely Issued\n Medicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Rs." + snapshot.data![0]["selling_cost_free_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Actual Price of Freely Issued\n Medicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Rs." + snapshot.data![0]["actual_cost_free_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Selling Price of Issued\nMedicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Rs." + snapshot.data![0]["selling_cost_issued_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Actual Price of Issued\n Medicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Rs." + snapshot.data![0]["actual_cost_issued_med"].toString(), style: TextStyle(fontSize: reportBodySize,fontWeight:FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Profit of The Day: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Text("Rs." + snapshot.data![0]["daily_profit"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 30),
+                                ],
+                              );
+                            }
+                          } else if (snapshot.hasError) {
+                            return Text("${snapshot.error}");
+                          }
 
-                    return CircularProgressIndicator();
-                  },
+                          return CircularProgressIndicator();
+                        },
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              SizedBox(height: 30),
-              Text('Selected Date: ${widget.selectedDate}'),
             ],
           ),
         ),
