@@ -30,7 +30,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
 
   Future<List<dynamic>> _fetchEarnings() async {
     final response = await http.get(Uri.parse(
-        'http://158.101.10.103/get_earnings/${widget.selectedDate.toString().substring(0, 10)}'));
+        'http://158.101.10.103/get_profit/${widget.selectedDate.toString().substring(0, 10)}'));
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
