@@ -4,7 +4,6 @@ import 'package:mcms_app/assets/color.dart' as color;
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
 import 'package:mcms_app/screens/notifications.dart';
@@ -30,7 +29,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
 
   Future<List<dynamic>> _fetchEarnings() async {
     final response = await http.get(Uri.parse(
-        'http://158.101.10.103/get_profit/${widget.selectedDate.toString().substring(0, 10)}'));
+        'http://158.101.10.103/get_weekly_profit/${widget.selectedDate.toString().substring(0, 10)}'));
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
@@ -187,23 +186,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                     children: [
                                       Container(
                                         child: Center(
-                                            child: Text("Report of The "+snapshot.data![0]["date"].toString().substring(0, 10), style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900,),)),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 20),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        child: Text("Date: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        child: Text(snapshot.data![0]["date"].toString().substring(0, 10), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                            child: Text("Report For Last Seven Days\nFrom ${widget.selectedDate.toString().substring(0, 10)} ", style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900,),)),
                                       ),
                                     ],
                                   ),
@@ -275,7 +258,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Profit of The Day: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                        child: Text("Profit of The Week: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
                                       ),
                                     ],
                                   ),
@@ -283,7 +266,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Rs." + snapshot.data![0]["daily_profit"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                        child: Text("Rs." + snapshot.data![0]["total_profit"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
                                       ),
                                     ],
                                   ),
@@ -302,6 +285,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                   ),
                 ),
               ),
+              SizedBox(height: 30),
             ],
           ),
         ),

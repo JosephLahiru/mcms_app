@@ -30,7 +30,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
 
   Future<List<dynamic>> _fetchEarnings() async {
     final response = await http.get(Uri.parse(
-        'http://158.101.10.103/get_profit/${widget.selectedDate.toString().substring(0, 10)}'));
+        'http://158.101.10.103/get_monthly_profit/${widget.selectedDate.toString().substring(0, 10)}'));
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
@@ -187,23 +187,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                     children: [
                                       Container(
                                         child: Center(
-                                            child: Text("Report of The "+snapshot.data![0]["date"].toString().substring(0, 10), style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900,),)),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 20),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        child: Text("Date: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        child: Text(snapshot.data![0]["date"].toString().substring(0, 10), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                            child: Text("Report For Last Month\nFrom ${widget.selectedDate.toString().substring(0, 10)}", style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900,),)),
                                       ),
                                     ],
                                   ),
@@ -275,7 +259,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Profit of The Day: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                        child: Text("Profit of The Month: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
                                       ),
                                     ],
                                   ),
@@ -283,7 +267,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Rs." + snapshot.data![0]["daily_profit"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                        child: Text("Rs." + snapshot.data![0]["total_profit"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
                                       ),
                                     ],
                                   ),
@@ -294,7 +278,6 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                           } else if (snapshot.hasError) {
                             return Text("${snapshot.error}");
                           }
-
                           return CircularProgressIndicator();
                         },
                       ),
