@@ -10,7 +10,7 @@ class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 
   List<Widget> screens = [Notifications(), InventoryDetails(), Reports()];
-  List<String> views = ["Notifications", "Inventory Level", "Reports"];
+  List<String> views = ["Notifications", "Inventory", "Reports"];
   List<String> images = ["notification.png", "Inventory.png", "report.png"];
   String drName = "Harsha";
   String drPic = "assets/images/dr.png";
