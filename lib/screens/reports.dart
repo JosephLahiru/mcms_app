@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/components/animated_bar.dart';
-import 'package:mcms_app/model/rive_asset.dart';
 import 'package:mcms_app/screens/dashboard.dart';
+import 'package:mcms_app/screens/inventory_details.dart';
+import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports_daily.dart';
 import 'package:mcms_app/screens/reports_monthly.dart';
 import 'package:mcms_app/screens/reports_weekly.dart';
-import 'package:mcms_app/util/rive_utils.dart';
-import 'package:rive/rive.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:mcms_app/screens/view_report.dart';
 import 'package:mcms_app/util/dateutil.dart';
 
 class Reports extends StatefulWidget {
@@ -21,15 +20,18 @@ class Reports extends StatefulWidget {
 }
 
 class _ReportsState extends State<Reports> {
-  RiveAsset selectedBottomNav = bottomNavs.first;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final textColor =
+    final textColorHeading =
         colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    final textColorBody =
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(top: 70.0, left: 30.0, right: 30.0),
@@ -38,6 +40,15 @@ class _ReportsState extends State<Reports> {
               //header
               Row(
                 children: [
+                  IconButton(
+                    icon: Icon(FontAwesomeIcons.bars),
+                    color: textColorHeading,
+
+                    onPressed: () {
+                      _scaffoldKey.currentState!.openDrawer();
+                    },
+                  ),
+                  SizedBox(width: 10.0),
                   Text(
                     "Reports",
                     style: TextStyle(
@@ -45,30 +56,23 @@ class _ReportsState extends State<Reports> {
                       fontWeight: FontWeight.w700,
                       // Use ColorScheme to change text color based on system color
                       // Set text color to black by default
-                      color: textColor,
+                      color: textColorHeading,
                     ),
                   ),
                   Expanded(child: Container()),
-                  Icon(
-                    Icons.arrow_back_ios,
-                    color: color.AppColors.grey,
-                    size: 30.0,
-                  ),
-                  SizedBox(width: 10.0),
-                  Icon(
-                    FontAwesomeIcons.book,
-                    color: color.AppColors.grey,
-                    size: 30.0,
-                  ),
-                  SizedBox(width: 15.0),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    color: color.AppColors.grey,
-                    size: 30.0,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Icon(
+                      FontAwesomeIcons.arrowLeft,
+                      color: color.AppColors.grey,
+                      size: 30.0,
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 50),
               //new report section
               InkWell(
                 child: Container(
@@ -108,7 +112,7 @@ class _ReportsState extends State<Reports> {
                           "New Report",
                           style: TextStyle(
                             fontSize: 25.0,
-                            color: color.AppColors.nonary,
+                            color: textColorBody,
                           ),
                         ),
                         SizedBox(height: 10.0),
@@ -116,7 +120,7 @@ class _ReportsState extends State<Reports> {
                           "${DateFormat.d().format(DateTime.now())}${DateUtil.getOrdinalSuffix(DateTime.now().day)} ${DateFormat.MMM().format(DateTime.now())} ${DateTime.now().year}",
                           style: TextStyle(
                             fontSize: 35.0,
-                            color: color.AppColors.nonary,
+                            color: textColorBody,
                           ),
                         ),
                         SizedBox(height: 25.0),
@@ -129,7 +133,7 @@ class _ReportsState extends State<Reports> {
                                   "View Report",
                                   style: TextStyle(
                                     fontSize: 16.0,
-                                    color: color.AppColors.nonary,
+                                    color: textColorBody,
                                   ),
                                 ),
                                 SizedBox(
@@ -137,7 +141,7 @@ class _ReportsState extends State<Reports> {
                                 ),
                                 Icon(
                                   FontAwesomeIcons.arrowUpRightFromSquare,
-                                  color: color.AppColors.nonary,
+                                  color: textColorBody,
                                   size: 15.0,
                                 ),
                               ],
@@ -171,11 +175,14 @@ class _ReportsState extends State<Reports> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Reports_Daily()),
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          View_Report(selectedDate: DateTime.now()),
+                    ),
                   );
                 },
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 40),
               //view daily report
               InkWell(
                 child: Container(
@@ -228,7 +235,7 @@ class _ReportsState extends State<Reports> {
                                   "View Daily Report",
                                   style: TextStyle(
                                     fontSize: 25.0,
-                                    color: color.AppColors.nonary,
+                                    color: textColorBody,
                                   ),
                                 ),
                               ],
@@ -246,7 +253,7 @@ class _ReportsState extends State<Reports> {
                   );
                 },
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 40),
               //view weekly report
               InkWell(
                 child: Container(
@@ -299,7 +306,7 @@ class _ReportsState extends State<Reports> {
                                   "View Weekly Report",
                                   style: TextStyle(
                                     fontSize: 25.0,
-                                    color: color.AppColors.nonary,
+                                    color: textColorBody,
                                   ),
                                 ),
                               ],
@@ -317,7 +324,7 @@ class _ReportsState extends State<Reports> {
                   );
                 },
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 40),
               //view monthly report
               InkWell(
                 child: Container(
@@ -370,7 +377,7 @@ class _ReportsState extends State<Reports> {
                                   "View Monthly Report",
                                   style: TextStyle(
                                     fontSize: 25.0,
-                                    color: color.AppColors.nonary,
+                                    color: textColorBody,
                                   ),
                                 ),
                               ],
@@ -392,65 +399,62 @@ class _ReportsState extends State<Reports> {
           ),
         ),
       ),
-      // bottomNavigationBar: SafeArea(
-      //   child: Container(
-      //     padding: const EdgeInsets.all(12),
-      //     margin: const EdgeInsets.symmetric(horizontal: 24),
-      //     decoration: BoxDecoration(
-      //       color: color.AppColors.backgroundColor2.withOpacity(0.8),
-      //       borderRadius: const BorderRadius.all(Radius.circular(24)),
-      //     ),
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //       children: [
-      //         ...List.generate(
-      //           bottomNavs.length,
-      //               (index) => GestureDetector(
-      //             onTap: () {
-      //               bottomNavs[index].input?.change(true);
-      //               if (bottomNavs[index] != selectedBottomNav) {
-      //                 setState(() {
-      //                   selectedBottomNav = bottomNavs[index];
-      //                 });
-      //               }
-      //               Future.delayed(const Duration(seconds: 1), () {
-      //                 bottomNavs[index].input!.change(false);
-      //               });
-      //             },
-      //             child: Column(
-      //               mainAxisSize: MainAxisSize.min,
-      //               children: [
-      //                 AnimatedBar(
-      //                     isActive: bottomNavs[index] == selectedBottomNav),
-      //                 SizedBox(
-      //                   height: 36,
-      //                   width: 36,
-      //                   child: Opacity(
-      //                     opacity:
-      //                     bottomNavs[index] == selectedBottomNav ? 1 : 0.5,
-      //                     child: RiveAnimation.asset(
-      //                       bottomNavs.first.src,
-      //                       artboard: bottomNavs[index].artboard,
-      //                       onInit: (artboard) {
-      //                         StateMachineController controller =
-      //                         RiveUtils.getRiveController(artboard,
-      //                             stateMachineName:
-      //                             bottomNavs[index].stateMachineName);
-      //
-      //                         bottomNavs[index].input =
-      //                         controller.findSMI("active") as SMIBool;
-      //                       },
-      //                     ),
-      //                   ),
-      //                 ),
-      //               ],
-      //             ),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: color.AppColors.gradientpurplefirst.withOpacity(0.8),
+              ),
+              accountName: Text("Dr. Harsha"),
+              accountEmail: Text("harsha@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                foregroundImage: AssetImage('assets/images/dr.png'),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("Dashboard"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Dashboard()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.notifications),
+              title: Text("Notifications"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Notifications()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.inventory),
+              title: Text("Inventory"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InventoryDetails()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.document_scanner),
+              title: Text("Reports"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Reports()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
