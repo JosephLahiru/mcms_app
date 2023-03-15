@@ -40,7 +40,9 @@ class _NotificationsState extends State<Notifications> {
               } else if (snapshot.hasData) {
                 final notifications = snapshot.data!;
 
-                return buildNotifi(notifications);
+                notifications.sort((a, b) => b.not_id.compareTo(a.not_id));
+
+                return buildNotifi(notifications.take(10).toList());
               } else {
                 return const Text('No notifications found');
               }
