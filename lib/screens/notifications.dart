@@ -59,9 +59,9 @@ class _NotificationsState extends State<Notifications> {
               Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: Image.asset(
-                  'assets/images/notifi.png',
+                  'assets/images/notofi2.png',
                   height: 200.0,
-                  width: 200.0,
+                  width: 400.0,
                 ),
               ),
               ListView.builder(
