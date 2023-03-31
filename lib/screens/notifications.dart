@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:mcms_app/screens/notification_details.dart';
 import '../model/notifi.dart';
 import '../widgets/ListWidget.dart';
 import '../assets/color.dart' as color;
@@ -73,7 +74,11 @@ class _NotificationsState extends State<Notifications> {
                   return ListWidget(
                     title: notification.category,
                     subtitle: notification.body,
-                    screen: const Notifications(),
+                    screen: NotificationDetails(
+                      title: notification.category,
+                      body: notification.body,
+                      description: notification.description,
+                    ),
                     listTileColor: color.AppColors.gradientpurplesecond,
                     listTileBorderColor: color.AppColors.gradientpurplesecond,
                   );
