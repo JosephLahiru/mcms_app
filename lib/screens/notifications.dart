@@ -79,8 +79,8 @@ class _NotificationsState extends State<Notifications> {
                       body: notification.body,
                       description: notification.description,
                     ),
-                    listTileColor: color.AppColors.gradientpurplesecond,
-                    listTileBorderColor: color.AppColors.gradientpurplesecond,
+                    listTileColor: Colors.purpleAccent.shade400,
+                    listTileBorderColor: Colors.purpleAccent.shade700,
                   );
                 },
               ),

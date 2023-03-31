@@ -20,7 +20,7 @@ class ListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (title == "Medicine") {
+    if (title == "Expiry") {
       leadingIcon = Icons.medical_information;
     }
 
@@ -55,11 +55,18 @@ class ListWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Theme.of(context).brightness == Brightness.dark
                 ? Colors.white
-                : Colors.black,
+                : Colors.white,
           ),
         ),
-        subtitle:
-            Text(subtitle, style: Theme.of(context).textTheme.titleMedium),
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 16,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.cyan
+                : Colors.cyanAccent,
+          ),
+        ),
         trailing: CircleAvatar(
           child: Icon(trailingIcon),
         ),

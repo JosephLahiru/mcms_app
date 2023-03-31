@@ -44,8 +44,9 @@ class NotificationDetails extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 25.0,
                     color: Theme.of(context).brightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
+                        ? Colors.cyanAccent
+                        : Colors.purple,
+                    fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.justify,
                 ),
