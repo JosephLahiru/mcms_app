@@ -20,6 +20,10 @@ class ListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (title == "Expiry") {
+      leadingIcon = Icons.medical_information;
+    }
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0, left: 12.0, right: 12.0),
       child: ListTile(
@@ -44,8 +48,25 @@ class ListWidget extends StatelessWidget {
         leading: CircleAvatar(
           child: Icon(leadingIcon),
         ),
-        title: Text(title, style: Theme.of(context).textTheme.headline5),
-        subtitle: Text(subtitle, style: Theme.of(context).textTheme.subtitle1),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontSize: 19,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.white,
+          ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 16,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.cyan
+                : Colors.cyanAccent,
+          ),
+        ),
         trailing: CircleAvatar(
           child: Icon(trailingIcon),
         ),

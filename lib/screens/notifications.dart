@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:mcms_app/screens/notification_details.dart';
 import '../model/notifi.dart';
 import '../widgets/ListWidget.dart';
 import '../assets/color.dart' as color;
@@ -40,7 +41,9 @@ class _NotificationsState extends State<Notifications> {
               } else if (snapshot.hasData) {
                 final notifications = snapshot.data!;
 
-                return buildNotifi(notifications);
+                notifications.sort((a, b) => b.not_id.compareTo(a.not_id));
+
+                return buildNotifi(notifications.take(10).toList());
               } else {
                 return const Text('No notifications found');
               }
@@ -57,9 +60,9 @@ class _NotificationsState extends State<Notifications> {
               Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: Image.asset(
-                  'assets/images/notifi.png',
+                  'assets/images/notofi2.png',
                   height: 200.0,
-                  width: 200.0,
+                  width: 400.0,
                 ),
               ),
               ListView.builder(
@@ -71,9 +74,13 @@ class _NotificationsState extends State<Notifications> {
                   return ListWidget(
                     title: notification.category,
                     subtitle: notification.body,
-                    screen: const Notifications(),
-                    listTileColor: color.AppColors.gradientpurplesecond,
-                    listTileBorderColor: color.AppColors.gradientpurplesecond,
+                    screen: NotificationDetails(
+                      title: notification.category,
+                      body: notification.body,
+                      description: notification.description,
+                    ),
+                    listTileColor: Colors.purpleAccent.shade400,
+                    listTileBorderColor: Colors.purpleAccent.shade700,
                   );
                 },
               ),
