@@ -24,7 +24,7 @@ class _InventoryDetails extends State<InventoryDetails> {
     final textColorHeading =
     colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
     final textColorBody =
-    colorScheme.brightness == Brightness.dark ? Colors.white : color.AppColors.septenary;
+    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
     final containerColor1 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackfifth : color.AppColors.gradientpurplefirst;
     final containerColor2 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackeighth : color.AppColors.gradientpurplesecond;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();

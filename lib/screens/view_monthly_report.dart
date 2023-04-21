@@ -44,7 +44,9 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
     final textColorHeading =
     colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
     final textColorBody =
-    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
+    final containerColor1 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackfifth : color.AppColors.gradientpurplefirst;
+    final containerColor2 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackeighth : color.AppColors.gradientpurplesecond;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     final reportHeadingSize = 20.0;
     final reportBodySize = 16.0;
@@ -103,8 +105,8 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                         begin: Alignment.bottomLeft,
                         end: Alignment.centerRight,
                         colors: [
-                          color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                          color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                          containerColor1.withOpacity(0.8),
+                          containerColor2.withOpacity(0.9),
                         ],
                       ),
                       borderRadius: BorderRadius.only(
@@ -116,7 +118,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                       boxShadow: [
                         BoxShadow(
                           color:
-                          color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                          color.AppColors.black.withOpacity(0.2),
                           blurRadius: 10,
                           offset: Offset(5, 10), // changes position of shadow
                         ),
@@ -149,8 +151,8 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                     begin: Alignment.bottomLeft,
                     end: Alignment.topRight,
                     colors: [
-                      color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                      color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                      containerColor1.withOpacity(0.8),
+                      containerColor2.withOpacity(0.9),
                     ],
                   ),
                   borderRadius: BorderRadius.only(
@@ -162,7 +164,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                   boxShadow: [
                     BoxShadow(
                       color:
-                      color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                      color.AppColors.black.withOpacity(0.2),
                       blurRadius: 10,
                       offset: Offset(5, 10), // changes position of shadow
                     ),
@@ -187,7 +189,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                     children: [
                                       Container(
                                         child: Center(
-                                            child: Text("Report For Last Month\nFrom ${widget.selectedDate.toString().substring(0, 10)}", style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900,),)),
+                                            child: Text("Report For Last Month\nFrom ${widget.selectedDate.toString().substring(0, 10)}", style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900, color: textColorBody),)),
                                       ),
                                     ],
                                   ),
@@ -195,7 +197,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Selling Price of Freely Issued\n Medicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                        child: Text("Selling Price of Freely Issued\n Medicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -203,7 +205,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Rs." + snapshot.data![0]["selling_cost_free_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                        child: Text("Rs." + snapshot.data![0]["selling_cost_free_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -211,7 +213,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Actual Price of Freely Issued\n Medicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                        child: Text("Actual Price of Freely Issued\n Medicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -219,7 +221,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Rs." + snapshot.data![0]["actual_cost_free_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                        child: Text("Rs." + snapshot.data![0]["actual_cost_free_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -227,7 +229,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Selling Price of Issued\nMedicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                        child: Text("Selling Price of Issued\nMedicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -235,7 +237,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Rs." + snapshot.data![0]["selling_cost_issued_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                        child: Text("Rs." + snapshot.data![0]["selling_cost_issued_med"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -243,7 +245,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Actual Price of Issued\n Medicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                        child: Text("Actual Price of Issued\n Medicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -251,7 +253,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Rs." + snapshot.data![0]["actual_cost_issued_med"].toString(), style: TextStyle(fontSize: reportBodySize,fontWeight:FontWeight.bold),),
+                                        child: Text("Rs." + snapshot.data![0]["actual_cost_issued_med"].toString(), style: TextStyle(fontSize: reportBodySize,fontWeight:FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -259,7 +261,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Profit of The Month: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold),),
+                                        child: Text("Profit of The Month: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -267,7 +269,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Rs." + snapshot.data![0]["total_profit"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold),),
+                                        child: Text("Rs." + snapshot.data![0]["total_profit"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -294,7 +296,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
           children: [
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(
-                color: color.AppColors.gradientpurplefirst.withOpacity(0.8),
+                color: containerColor1.withOpacity(0.8),
               ),
               accountName: Text("Dr. Harsha"),
               accountEmail: Text("harsha@gmail.com"),

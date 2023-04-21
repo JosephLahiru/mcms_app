@@ -26,6 +26,8 @@ class _Reports_Daily extends State<Reports_Daily> {
     colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
     final textColorBody =
     colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    final containerColor1 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackfifth : color.AppColors.gradientpurplefirst;
+    final containerColor2 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackeighth : color.AppColors.gradientpurplesecond;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
@@ -81,8 +83,8 @@ class _Reports_Daily extends State<Reports_Daily> {
                         begin: Alignment.bottomLeft,
                         end: Alignment.centerRight,
                         colors: [
-                          color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                          color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                          containerColor1.withOpacity(0.8),
+                          containerColor2.withOpacity(0.9),
                         ],
                       ),
                       borderRadius: BorderRadius.only(
@@ -94,7 +96,7 @@ class _Reports_Daily extends State<Reports_Daily> {
                       boxShadow: [
                         BoxShadow(
                           color:
-                              color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                              Colors.black.withOpacity(0.2),
                           blurRadius: 10,
                           offset: Offset(5, 10), // changes position of shadow
                         ),
@@ -126,8 +128,8 @@ class _Reports_Daily extends State<Reports_Daily> {
                     begin: Alignment.topLeft,
                     end: Alignment.centerRight,
                     colors: [
-                      color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                      color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                      containerColor1.withOpacity(0.8),
+                      containerColor2.withOpacity(0.9),
                     ],
                   ),
                   borderRadius: BorderRadius.only(
@@ -139,7 +141,7 @@ class _Reports_Daily extends State<Reports_Daily> {
                   boxShadow: [
                     BoxShadow(
                       color:
-                          color.AppColors.gradientpurplesecond.withOpacity(0.2),
+                          containerColor2.withOpacity(0.2),
                       blurRadius: 40,
                       offset: Offset(8, 10),
                     ),
@@ -188,7 +190,7 @@ class _Reports_Daily extends State<Reports_Daily> {
           children: [
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(
-                color: color.AppColors.gradientpurplefirst.withOpacity(0.8),
+                color: containerColor1.withOpacity(0.8),
               ),
               accountName: Text("Dr. Harsha"),
               accountEmail: Text("harsha@gmail.com"),
