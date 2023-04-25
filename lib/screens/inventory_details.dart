@@ -3,11 +3,11 @@ import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports.dart';
-import 'package:mcms_app/screens/reports_daily.dart';
-import 'package:mcms_app/screens/reports_monthly.dart';
-import 'package:mcms_app/screens/reports_weekly.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mcms_app/screens/view_all_products.dart';
+import 'package:mcms_app/screens/view_expire.dart';
+import 'package:mcms_app/screens/view_expire_items.dart';
 
 class InventoryDetails extends StatefulWidget {
   const InventoryDetails({Key? key}) : super(key: key);
@@ -148,7 +148,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: containerColor2
+                                color: Colors.black
                                     .withOpacity(0.2),
                                 blurRadius: 10,
                                 offset: Offset(5, 10), // changes position of shadow
@@ -190,7 +190,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Reports_Daily()),
+                            MaterialPageRoute(builder: (context) => ViewAllProducts()),
                           );
                         },
                       ),
@@ -217,7 +217,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: containerColor2
+                                color: Colors.black
                                     .withOpacity(0.2),
                                 blurRadius: 10,
                                 offset: Offset(5, 10), // changes position of shadow
@@ -261,7 +261,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Reports_Weekly()),
+                            MaterialPageRoute(builder: (context) => ViewExpire()),
                           );
                         },
                       ),
@@ -288,7 +288,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: containerColor2
+                                color: Colors.black
                                     .withOpacity(0.2),
                                 blurRadius: 10,
                                 offset: Offset(5, 10), // changes position of shadow
@@ -332,7 +332,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Reports_Weekly()),
+                            MaterialPageRoute(builder: (context) => ViewAllProducts()),
                           );
                         },
                       ),
