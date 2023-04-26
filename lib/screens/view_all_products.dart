@@ -148,7 +148,7 @@ class _ViewAllProducts extends State<ViewAllProducts> {
                                       ),
                                       SizedBox(height: 8.0),
                                       Text(
-                                        data['description'],
+                                        data['brand_name'],
                                         style: TextStyle(
                                           fontSize: 16.0,
                                           color: textColorBody,
