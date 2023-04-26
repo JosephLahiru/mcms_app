@@ -91,6 +91,8 @@ class _ViewAllProducts extends State<ViewAllProducts> {
                 ),
               ],
             ),
+            //search bar for flutter app
+
             SizedBox(height: 20),
             Container(
               height: 600.0,

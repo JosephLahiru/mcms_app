@@ -6,7 +6,6 @@ import 'package:mcms_app/screens/reports.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/screens/view_all_products.dart';
-import 'package:mcms_app/screens/view_expire_items.dart';
 
 class ViewLowStock extends StatefulWidget {
   const ViewLowStock({Key? key}) : super(key: key);
@@ -262,7 +261,7 @@ class _ViewLowStock extends State<ViewLowStock> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ViewExpireItems()),
+                            MaterialPageRoute(builder: (context) => ViewAllProducts()),
                           );
                         },
                       ),
