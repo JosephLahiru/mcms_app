@@ -190,7 +190,7 @@ class _ViewExpire extends State<ViewExpire> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ViewAllProducts()),
+                            MaterialPageRoute(builder: (context) => ViewExpireItems(expireType: '1')),
                           );
                         },
                       ),
@@ -262,7 +262,7 @@ class _ViewExpire extends State<ViewExpire> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ViewExpireItems()),
+                            MaterialPageRoute(builder: (context) => ViewExpireItems(expireType: '2')),
                           );
                         },
                       ),
@@ -334,7 +334,7 @@ class _ViewExpire extends State<ViewExpire> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ViewAllProducts()),
+                            MaterialPageRoute(builder: (context) => ViewExpireItems(expireType: '3')),
                           );
                         },
                       ),

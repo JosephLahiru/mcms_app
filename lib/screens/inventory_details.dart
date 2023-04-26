@@ -7,7 +7,6 @@ import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/screens/view_all_products.dart';
 import 'package:mcms_app/screens/view_expire.dart';
-import 'package:mcms_app/screens/view_expire_items.dart';
 import 'package:mcms_app/screens/view_stocklow.dart';
 
 class InventoryDetails extends StatefulWidget {
