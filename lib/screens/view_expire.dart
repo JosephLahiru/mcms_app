@@ -6,17 +6,16 @@ import 'package:mcms_app/screens/reports.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/screens/view_all_products.dart';
-import 'package:mcms_app/screens/view_expire.dart';
-import 'package:mcms_app/screens/view_stocklow.dart';
+import 'package:mcms_app/screens/view_expire_items.dart';
 
-class InventoryDetails extends StatefulWidget {
-  const InventoryDetails({Key? key}) : super(key: key);
+class ViewExpire extends StatefulWidget {
+  const ViewExpire({Key? key}) : super(key: key);
 
   @override
-  State<InventoryDetails> createState() => _InventoryDetails();
+  State<ViewExpire> createState() => _ViewExpire();
 }
 
-class _InventoryDetails extends State<InventoryDetails> {
+class _ViewExpire extends State<ViewExpire> {
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                     ),
                     SizedBox(width: 10.0),
                     Text(
-                      "Inventory",
+                      "Expire",
                       style: TextStyle(
                         fontSize: 30.0,
                         fontWeight: FontWeight.w700,
@@ -114,7 +113,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                           bottomRight: Radius.circular(20.0),
                         ),
                         image: DecorationImage(
-                          image: AssetImage("assets/images/figure18.png"),
+                          image: AssetImage("assets/images/figure17.png"),
                         ),
                       ),
                     ),
@@ -130,7 +129,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                       InkWell(
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 130.0,
+                          height: 110.0,
                           decoration: BoxDecoration(
                             gradient: flutter_gradient.LinearGradient(
                               begin: Alignment.centerLeft,
@@ -167,12 +166,13 @@ class _InventoryDetails extends State<InventoryDetails> {
                                     Row(
                                       children: [
                                         Icon(
-                                          FontAwesomeIcons.store,
+                                          FontAwesomeIcons.box,
                                           size: 70.0,
+                                          color: textColorBody,
                                         ),
                                         SizedBox(width: 30),
                                         Text(
-                                          "Total Products \n Available \n In The System",
+                                          "Items Expire \nIn Next Month",
                                           style: TextStyle(
                                             fontSize: 25.0,
                                             color: textColorBody,
@@ -190,7 +190,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ViewAllProducts()),
+                            MaterialPageRoute(builder: (context) => ViewExpireItems(expireType: '1')),
                           );
                         },
                       ),
@@ -199,7 +199,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                       InkWell(
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 130,
+                          height: 110,
                           decoration: BoxDecoration(
                             gradient: flutter_gradient.LinearGradient(
                               begin: Alignment.centerLeft,
@@ -236,14 +236,15 @@ class _InventoryDetails extends State<InventoryDetails> {
                                     Row(
                                       children: [
                                         Icon(
-                                          FontAwesomeIcons.hourglassEnd,
+                                          FontAwesomeIcons.box,
                                           size: 70.0,
+                                          color: textColorBody,
                                         ),
                                         SizedBox(
                                           width: 30.0,
                                         ),
                                         Text(
-                                          "Items Going To \nExpire In Next \n3 Months",
+                                          "Items Expire In \nNext Two Month",
                                           style: TextStyle(
                                             fontSize: 25.0,
                                             color: textColorBody,
@@ -261,7 +262,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ViewExpire()),
+                            MaterialPageRoute(builder: (context) => ViewExpireItems(expireType: '2')),
                           );
                         },
                       ),
@@ -270,7 +271,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                       InkWell(
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 130,
+                          height: 110,
                           decoration: BoxDecoration(
                             gradient: flutter_gradient.LinearGradient(
                               begin: Alignment.topLeft,
@@ -307,14 +308,15 @@ class _InventoryDetails extends State<InventoryDetails> {
                                     Row(
                                       children: [
                                         Icon(
-                                          FontAwesomeIcons.arrowTrendDown,
+                                          FontAwesomeIcons.box,
                                           size: 70.0,
+                                          color: textColorBody,
                                         ),
                                         SizedBox(
                                           width: 30.0,
                                         ),
                                         Text(
-                                          "Stock Low \nProducts \nIn The System",
+                                          "Items Expire In \nNext Three Month",
                                           style: TextStyle(
                                             fontSize: 25.0,
                                             color: textColorBody,
@@ -332,7 +334,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ViewLowStock()),
+                            MaterialPageRoute(builder: (context) => ViewExpireItems(expireType: '3')),
                           );
                         },
                       ),
@@ -384,7 +386,7 @@ class _InventoryDetails extends State<InventoryDetails> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => InventoryDetails()),
+                  MaterialPageRoute(builder: (context) => ViewExpire()),
                 );
               },
             ),

@@ -27,7 +27,9 @@ class _ReportsState extends State<Reports> {
     final textColorHeading =
         colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
     final textColorBody =
-        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
+    final containerColor1 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackfifth : color.AppColors.gradientpurplefirst;
+    final containerColor2 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackeighth : color.AppColors.gradientpurplesecond;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
@@ -83,8 +85,8 @@ class _ReportsState extends State<Reports> {
                       begin: Alignment.bottomLeft,
                       end: Alignment.centerRight,
                       colors: [
-                        color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                        color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                        containerColor1.withOpacity(0.8),
+                        containerColor2.withOpacity(0.9),
                       ],
                     ),
                     borderRadius: BorderRadius.only(
@@ -95,7 +97,7 @@ class _ReportsState extends State<Reports> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: color.AppColors.gradientpurplesecond
+                        color: color.AppColors.black
                             .withOpacity(0.2),
                         blurRadius: 10,
                         offset: Offset(5, 10), // changes position of shadow
@@ -152,7 +154,7 @@ class _ReportsState extends State<Reports> {
                                 borderRadius: BorderRadius.circular(50.0),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: color.AppColors.gradientpurplefirst
+                                    color: containerColor1
                                         .withOpacity(0.8),
                                     blurRadius: 10,
                                     offset: Offset(
@@ -193,8 +195,8 @@ class _ReportsState extends State<Reports> {
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
-                        color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                        color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                        containerColor1.withOpacity(0.8),
+                        containerColor2.withOpacity(0.9),
                       ],
                     ),
                     borderRadius: BorderRadius.only(
@@ -205,7 +207,7 @@ class _ReportsState extends State<Reports> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: color.AppColors.gradientpurplesecond
+                        color: color.AppColors.black
                             .withOpacity(0.2),
                         blurRadius: 10,
                         offset: Offset(5, 10), // changes position of shadow
@@ -225,7 +227,7 @@ class _ReportsState extends State<Reports> {
                               children: [
                                 Icon(
                                   FontAwesomeIcons.fileContract,
-                                  color: color.AppColors.secondary,
+                                  color: textColorBody,
                                   size: 30.0,
                                 ),
                                 SizedBox(
@@ -264,8 +266,8 @@ class _ReportsState extends State<Reports> {
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
-                        color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                        color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                        containerColor1.withOpacity(0.8),
+                        containerColor2.withOpacity(0.9),
                       ],
                     ),
                     borderRadius: BorderRadius.only(
@@ -276,7 +278,7 @@ class _ReportsState extends State<Reports> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: color.AppColors.gradientpurplesecond
+                        color: color.AppColors.black
                             .withOpacity(0.2),
                         blurRadius: 10,
                         offset: Offset(5, 10), // changes position of shadow
@@ -296,7 +298,7 @@ class _ReportsState extends State<Reports> {
                               children: [
                                 Icon(
                                   FontAwesomeIcons.fileContract,
-                                  color: color.AppColors.tertiary,
+                                  color: textColorBody,
                                   size: 30.0,
                                 ),
                                 SizedBox(
@@ -335,8 +337,8 @@ class _ReportsState extends State<Reports> {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        color.AppColors.gradientpurplefirst.withOpacity(0.8),
-                        color.AppColors.gradientpurplesecond.withOpacity(0.9),
+                        containerColor1.withOpacity(0.8),
+                        containerColor2.withOpacity(0.9),
                       ],
                     ),
                     borderRadius: BorderRadius.only(
@@ -347,7 +349,7 @@ class _ReportsState extends State<Reports> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: color.AppColors.gradientpurplesecond
+                        color: color.AppColors.black
                             .withOpacity(0.2),
                         blurRadius: 10,
                         offset: Offset(5, 10), // changes position of shadow
@@ -367,7 +369,7 @@ class _ReportsState extends State<Reports> {
                               children: [
                                 Icon(
                                   FontAwesomeIcons.fileContract,
-                                  color: color.AppColors.octonary,
+                                  color: textColorBody,
                                   size: 30.0,
                                 ),
                                 SizedBox(
@@ -404,7 +406,7 @@ class _ReportsState extends State<Reports> {
           children: [
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(
-                color: color.AppColors.gradientpurplefirst.withOpacity(0.8),
+                color: containerColor1.withOpacity(0.8),
               ),
               accountName: Text("Dr. Harsha"),
               accountEmail: Text("harsha@gmail.com"),
