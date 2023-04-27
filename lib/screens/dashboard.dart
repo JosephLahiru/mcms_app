@@ -4,8 +4,6 @@ import 'package:mcms_app/screens/reports.dart';
 import 'inventory_details.dart';
 import 'notifications.dart';
 
-import '../assets/color.dart' as color;
-
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 

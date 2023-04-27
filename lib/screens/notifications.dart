@@ -77,7 +77,7 @@ class _NotificationsState extends State<Notifications> {
                     screen: NotificationDetails(
                       title: notification.category,
                       body: notification.body,
-                      description: notification.description,
+                      description: notification.description ?? '',
                     ),
                     listTileColor: Colors.purpleAccent.shade400,
                     listTileBorderColor: Colors.purpleAccent.shade700,
