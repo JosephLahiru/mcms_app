@@ -27,8 +27,10 @@ class InkWellWidget extends StatelessWidget {
       leadingIcon = FontAwesomeIcons.triangleExclamation;
     } else if (title == "Medicine") {
       leadingIcon = FontAwesomeIcons.prescriptionBottle;
-    } else if (title == "Other") {
+    } else if (title == "Stock") {
       leadingIcon = FontAwesomeIcons.box;
+    } else {
+      leadingIcon = FontAwesomeIcons.clipboardQuestion;
     }
 
     final colorScheme = Theme.of(context).colorScheme;
