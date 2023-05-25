@@ -44,6 +44,14 @@ class AppColors {
   static const Color gradientpurplethird = Color(0xFF651FFF);
   static const Color gradientpurplefourth = Color(0xFF6200EA);
   static const Color gradientpurplefifth = Color(0xFF7C4DFF);
+  static const Color gradientblackfirst = Color(0xFF0e1013);
+  static const Color gradientblacksecond = Color(0xFF17181B);
+  static const Color gradientblackthird = Color(0xFF202124);
+  static const Color gradientblackfourth = Color(0xFF2A2C30);
+  static const Color gradientblackfifth = Color(0xFF34373B);
+  static const Color gradientblacksixth = Color(0xFF424242);
+  static const Color gradientblackseventh = Color(0xFF4E4E4E);
+  static const Color gradientblackeighth = Color(0xFF5A5A5A);
   static const Color backgroundColor2 = Color(0xFF17203A);
   static const Color backgroundColorLight = Color(0xFFF2F6FF);
   static const Color backgroundColorDark = Color(0xFF25254B);
