@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:mcms_app/screens/notification_details.dart';
 import '../model/notifi.dart';
 import '../widgets/ListWidget.dart';
-import '../assets/color.dart' as color;
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);

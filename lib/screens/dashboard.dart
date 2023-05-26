@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:mcms_app/screens/reports.dart';
 
 import 'inventory_details.dart';
-import 'notifications.dart';
+// import 'notifications.dart';
+import 'notifications_new.dart';
 
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 
-  List<Widget> screens = [Notifications(), InventoryDetails(), Reports()];
+  List<Widget> screens = [NotificationsNew(), InventoryDetails(), Reports()];
   List<String> views = ["Notifications", "Inventory", "Reports"];
   List<String> images = ["notification.png", "Inventory.png", "report.png"];
   String drName = "Harsha";
