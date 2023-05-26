@@ -56,4 +56,28 @@ class AppColors {
   static const Color backgroundColorLight = Color(0xFFF2F6FF);
   static const Color backgroundColorDark = Color(0xFF25254B);
   static const Color shadowColorLight = Color(0xFF4A5367);
+  static const Color lavender = Color(0xFFE6E6FA);
+  static const Color salmon = Color(0xFFFA8072);
+  static const Color gold = Color(0xFFFFD700);
+  static const Color silver = Color(0xFFC0C0C0);
+  static const Color emerald = Color(0xFF50C878);
+  static const Color coral = Color(0xFFFF7F50);
+  static const Color mint = Color(0xFF98FF98);
+  static const Color indigoDye = Color(0xFF00416A);
+  static const Color maroon = Color(0xFF800000);
+  static const Color navyBlue = Color(0xFF000080);
+  static const Color olive = Color(0xFF808000);
+  static const Color plum = Color(0xFFDDA0DD);
+  static const Color skyBlue = Color(0xFF87CEEB);
+  static const Color violet = Color(0xFF8A2BE2);
+  static const Color wheat = Color(0xFFF5DEB3);
+  static const Color turquoise = Color(0xFF40E0D0);
+  static const Color darkPurple = Color(0xFF800080);
+  static const Color peach = Color(0xFFFFDAB9);
+  static const Color chocolate = Color(0xFFD2691E);
+  static const Color steelBlue = Color(0xFF4682B4);
+  static const Color tomato = Color(0xFFFF6347);
+  static const Color sandyBrown = Color(0xFFF4A460);
+  static const Color darkGreen = Color(0xFF006400);
+
 }
