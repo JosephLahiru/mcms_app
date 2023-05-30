@@ -9,7 +9,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-// Define a function to make the API call and return the data
 Future<List<dynamic>> fetchData() async {
   final response = await http.get(Uri.parse('http://158.101.10.103/get_stock'));
 
@@ -24,11 +23,13 @@ class ViewAllProducts extends StatefulWidget {
   const ViewAllProducts({Key? key}) : super(key: key);
 
   @override
-  State<ViewAllProducts> createState() => _ViewAllProducts();
+  State<ViewAllProducts> createState() => _ViewAllProductsState();
 }
 
-class _ViewAllProducts extends State<ViewAllProducts> {
+class _ViewAllProductsState extends State<ViewAllProducts> {
   late Future<List<dynamic>> futureData;
+  TextEditingController searchController = TextEditingController();
+  List<dynamic> filteredData = [];
 
   @override
   void initState() {
@@ -36,13 +37,37 @@ class _ViewAllProducts extends State<ViewAllProducts> {
     futureData = fetchData();
   }
 
+  void filterData(String query) {
+    futureData.then((data) {
+      setState(() {
+        filteredData = data
+            .where((item) =>
+        item['prdct_name']
+            .toString()
+            .toLowerCase()
+            .contains(query.toLowerCase()) ||
+            item['brand_name']
+                .toString()
+                .toLowerCase()
+                .contains(query.toLowerCase()))
+            .toList();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textColorHeading =
-        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
     final textColorBody =
-        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
+    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
     final containerColor1 = colorScheme.brightness == Brightness.dark
         ? color.AppColors.gradientblackfifth
         : color.AppColors.gradientpurplefirst;
@@ -57,7 +82,6 @@ class _ViewAllProducts extends State<ViewAllProducts> {
         padding: const EdgeInsets.only(top: 70.0, left: 30.0, right: 30.0),
         child: Column(
           children: [
-            //header
             Row(
               children: [
                 IconButton(
@@ -73,8 +97,6 @@ class _ViewAllProducts extends State<ViewAllProducts> {
                   style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.w700,
-                    // Use ColorScheme to change text color based on system color
-                    // Set text color to black by default
                     color: textColorHeading,
                   ),
                 ),
@@ -91,111 +113,135 @@ class _ViewAllProducts extends State<ViewAllProducts> {
                 ),
               ],
             ),
-            //search bar for flutter app
-
             SizedBox(height: 20),
-            Container(
-              height: 600.0,
-              width: MediaQuery.of(context).size.width,
-              child: FutureBuilder<List<dynamic>>(
-                future: futureData,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        final data = snapshot.data![index];
-                        return Container(
-                          child: Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  gradient: flutter_gradient.LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      containerColor1.withOpacity(0.8),
-                                      containerColor2.withOpacity(0.9),
-                                    ],
-                                  ),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
-                                      blurRadius: 10,
-                                      offset: Offset(5, 10),
-                                    ),
-                                  ],
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        data['prdct_name'],
-                                        style: TextStyle(
-                                          fontSize: 24.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: textColorBody,
-                                        ),
-                                      ),
-                                      SizedBox(height: 8.0),
-                                      Text(
-                                        data['brand_name'],
-                                        style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: textColorBody,
-                                        ),
-                                      ),
-                                      SizedBox(height: 16.0),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Rs.${data['sell_price']}',
-                                            style: TextStyle(
-                                              fontSize: 20.0,
-                                              fontWeight: FontWeight.bold,
-                                              color: textColorBody,
-                                            ),
-                                          ),
-                                          Text(
-                                            'In Stock: ${data['total_quantity']}',
-                                            style: TextStyle(
-                                              fontSize: 16.0,
-                                              color: textColorBody,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 20.0)
-                            ],
+            TextField(
+              controller: searchController,
+              autofocus: true,
+              onChanged: (value) {
+                filterData(value);
+              },
+              decoration: InputDecoration(
+                hintText: 'Search...',
+                prefixIcon: Icon(Icons.search),
+              ),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: FutureBuilder<List<dynamic>>(
+                  future: filteredData.isNotEmpty
+                      ? Future.value(filteredData)
+                      : futureData,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      if (filteredData.isEmpty && searchController.text.isNotEmpty) {
+                        return Center(
+                          child: Text(
+                            'No results found',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         );
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text('${snapshot.error}'),
-                    );
-                  } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
+                      }
+                      return ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          final data = snapshot.data![index];
+                          return Container(
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    gradient: flutter_gradient.LinearGradient(
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                      colors: [
+                                        containerColor1.withOpacity(0.8),
+                                        containerColor2.withOpacity(0.9),
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                      bottomLeft: Radius.circular(20.0),
+                                      bottomRight: Radius.circular(20.0),
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        blurRadius: 10,
+                                        offset: Offset(5, 10),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          data['prdct_name'],
+                                          style: TextStyle(
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.bold,
+                                            color: textColorBody,
+                                          ),
+                                        ),
+                                        SizedBox(height: 8.0),
+                                        Text(
+                                          data['brand_name'],
+                                          style: TextStyle(
+                                            fontSize: 16.0,
+                                            color: textColorBody,
+                                          ),
+                                        ),
+                                        SizedBox(height: 16.0),
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Rs.${data['sell_price']}',
+                                              style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: textColorBody,
+                                              ),
+                                            ),
+                                            Text(
+                                              'In Stock: ${data['total_quantity']}',
+                                              style: TextStyle(
+                                                fontSize: 16.0,
+                                                color: textColorBody,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 20.0)
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(
+                        child: Text('${snapshot.error}'),
+                      );
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ],
@@ -225,6 +271,17 @@ class _ViewAllProducts extends State<ViewAllProducts> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.inventory),
+              title: Text("Inventory"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ViewAllProducts()),
+                );
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.notifications),
               title: Text("Notifications"),
               onTap: () {
@@ -235,17 +292,7 @@ class _ViewAllProducts extends State<ViewAllProducts> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.inventory),
-              title: Text("Inventory"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InventoryDetails()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.document_scanner),
+              leading: Icon(Icons.receipt),
               title: Text("Reports"),
               onTap: () {
                 Navigator.push(
