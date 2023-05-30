@@ -18,7 +18,6 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
         elevation: 6,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
