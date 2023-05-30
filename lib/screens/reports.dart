@@ -52,7 +52,7 @@ class _ReportsState extends State<Reports> {
                   ),
                   SizedBox(width: 10.0),
                   Text(
-                    "Reports",
+                    "Revenue Reports",
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,
@@ -111,7 +111,7 @@ class _ReportsState extends State<Reports> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "New Report",
+                          "Daily Revenue Report",
                           style: TextStyle(
                             fontSize: 25.0,
                             color: textColorBody,
@@ -121,7 +121,7 @@ class _ReportsState extends State<Reports> {
                         Text(
                           "${DateFormat.d().format(DateTime.now())}${DateUtil.getOrdinalSuffix(DateTime.now().day)} ${DateFormat.MMM().format(DateTime.now())} ${DateTime.now().year}",
                           style: TextStyle(
-                            fontSize: 35.0,
+                            fontSize: 38.0,
                             color: textColorBody,
                           ),
                         ),
@@ -189,7 +189,7 @@ class _ReportsState extends State<Reports> {
               InkWell(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 70,
+                  height: 100,
                   decoration: BoxDecoration(
                     gradient: flutter_gradient.LinearGradient(
                       begin: Alignment.centerLeft,
@@ -234,7 +234,7 @@ class _ReportsState extends State<Reports> {
                                   width: 20.0,
                                 ),
                                 Text(
-                                  "View Daily Report",
+                                  "View Daily Revenue\nReport",
                                   style: TextStyle(
                                     fontSize: 25.0,
                                     color: textColorBody,
@@ -260,7 +260,7 @@ class _ReportsState extends State<Reports> {
               InkWell(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 70,
+                  height: 100,
                   decoration: BoxDecoration(
                     gradient: flutter_gradient.LinearGradient(
                       begin: Alignment.centerLeft,
@@ -305,7 +305,7 @@ class _ReportsState extends State<Reports> {
                                   width: 20.0,
                                 ),
                                 Text(
-                                  "View Weekly Report",
+                                  "View Weekly Revenue\nReport",
                                   style: TextStyle(
                                     fontSize: 25.0,
                                     color: textColorBody,
@@ -331,7 +331,7 @@ class _ReportsState extends State<Reports> {
               InkWell(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 70,
+                  height: 100,
                   decoration: BoxDecoration(
                     gradient: flutter_gradient.LinearGradient(
                       begin: Alignment.topLeft,
@@ -376,7 +376,7 @@ class _ReportsState extends State<Reports> {
                                   width: 20.0,
                                 ),
                                 Text(
-                                  "View Monthly Report",
+                                  "View Monthly Revenue\nReport",
                                   style: TextStyle(
                                     fontSize: 25.0,
                                     color: textColorBody,

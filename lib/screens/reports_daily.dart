@@ -49,7 +49,7 @@ class _Reports_Daily extends State<Reports_Daily> {
                   ),
                   SizedBox(width: 10.0),
                   Text(
-                    "Daily Reports",
+                    "Daily Report",
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,
@@ -155,7 +155,7 @@ class _Reports_Daily extends State<Reports_Daily> {
                     children: [
                       Center(
                         child: Text(
-                          "Select Date To View Report",
+                          "Select Date To View Revenue Report",
                           style: TextStyle(
                             fontSize: 20.0,
                             color: textColorBody,
