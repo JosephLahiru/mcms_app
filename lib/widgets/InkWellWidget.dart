@@ -48,7 +48,7 @@ class InkWellWidget extends StatelessWidget {
         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 130.0,
+          height: 90.0,
           decoration: BoxDecoration(
             gradient: flutter_gradient.LinearGradient(
               begin: Alignment.centerLeft,
@@ -58,11 +58,8 @@ class InkWellWidget extends StatelessWidget {
                 containerColor2.withOpacity(0.9),
               ],
             ),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0),
-              bottomLeft: Radius.circular(20.0),
-              bottomRight: Radius.circular(20.0),
+            borderRadius: BorderRadius.all(
+              Radius.circular(15.0),
             ),
             boxShadow: [
               BoxShadow(
@@ -73,8 +70,7 @@ class InkWellWidget extends StatelessWidget {
             ],
           ),
           child: Container(
-            padding: const EdgeInsets.only(
-                top: 20.0, left: 20.0, right: 20.0, bottom: 20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -85,13 +81,13 @@ class InkWellWidget extends StatelessWidget {
                       children: [
                         Icon(
                           leadingIcon,
-                          size: 70.0,
+                          size: 50.0,
                         ),
-                        SizedBox(width: 30),
+                        SizedBox(width: 10),
                         Text(
-                          title,
+                          subtitle,
                           style: TextStyle(
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                             color: textColorBody,
                             fontWeight: FontWeight.bold,
                           ),
