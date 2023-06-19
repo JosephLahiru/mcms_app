@@ -43,12 +43,15 @@ class InkWellWidget extends StatelessWidget {
         ? color.AppColors.gradientblackeighth
         : color.AppColors.gradientpurplesecond;
 
+    final words = subtitle.split(' ');
+    final height = words.length > 6 ? 110.0 : 90.0;
+
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 90.0,
+          height: height,
           decoration: BoxDecoration(
             gradient: flutter_gradient.LinearGradient(
               begin: Alignment.centerLeft,
@@ -83,15 +86,39 @@ class InkWellWidget extends StatelessWidget {
                           leadingIcon,
                           size: 50.0,
                         ),
-                        SizedBox(width: 10),
-                        Text(
-                          subtitle,
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: textColorBody,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        SizedBox(width: 30),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (words.length > 0)
+                              Text(
+                                words.sublist(0, 3).join(' '),
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: textColorBody,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            if (words.length > 3)
+                              Text(
+                                words.sublist(3, 6).join(' '),
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: textColorBody,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            if (words.length > 6)
+                              Text(
+                                words.sublist(6).join(' '),
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: textColorBody,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                          ],
+                        )
                       ],
                     ),
                   ],
