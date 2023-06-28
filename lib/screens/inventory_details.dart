@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/screens/dashboard.dart';
-import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/screens/view_all_products.dart';
 import 'package:mcms_app/screens/view_expire.dart';
 import 'package:mcms_app/screens/view_stocklow.dart';
+
+import 'notifications_new.dart';
 
 class InventoryDetails extends StatefulWidget {
   const InventoryDetails({Key? key}) : super(key: key);
@@ -374,7 +375,7 @@ class _InventoryDetails extends State<InventoryDetails> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
+                  MaterialPageRoute(builder: (context) => NotificationsNew()),
                 );
               },
             ),

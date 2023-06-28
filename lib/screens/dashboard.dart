@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 
 import 'inventory_details.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'notifications.dart';
 import 'notifications_new.dart';
 
 class Dashboard extends StatelessWidget {
@@ -110,7 +109,7 @@ class Dashboard extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
+                  MaterialPageRoute(builder: (context) => NotificationsNew()),
                 );
               },
             ),
@@ -120,7 +119,7 @@ class Dashboard extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NotificationsNew()),
+                  MaterialPageRoute(builder: (context) => InventoryDetails()),
                 );
               },
             ),

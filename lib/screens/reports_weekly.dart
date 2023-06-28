@@ -4,7 +4,7 @@ import 'package:mcms_app/screens/dashboard.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
-import 'package:mcms_app/screens/notifications.dart';
+import 'package:mcms_app/screens/notifications_new.dart';
 import 'package:mcms_app/screens/reports.dart';
 import 'package:mcms_app/screens/view_weekly_report.dart';
 
@@ -214,7 +214,7 @@ class _Reports_Weekly extends State<Reports_Weekly> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
+                  MaterialPageRoute(builder: (context) => NotificationsNew()),
                 );
               },
             ),

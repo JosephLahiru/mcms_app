@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
-import 'package:mcms_app/screens/notifications.dart';
+import 'package:mcms_app/screens/notifications_new.dart';
 import 'package:mcms_app/screens/reports.dart';
 
 class View_Report extends StatefulWidget {
@@ -337,7 +337,7 @@ class _View_Report extends State<View_Report> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
+                  MaterialPageRoute(builder: (context) => NotificationsNew()),
                 );
               },
             ),

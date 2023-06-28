@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/screens/dashboard.dart';
-import 'package:mcms_app/screens/notifications.dart';
+import 'package:mcms_app/screens/notifications_new.dart';
 import 'package:mcms_app/screens/reports.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -376,7 +376,7 @@ class _ViewExpire extends State<ViewExpire> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
+                  MaterialPageRoute(builder: (context) => NotificationsNew()),
                 );
               },
             ),
