@@ -174,6 +174,7 @@ class _NotificationsNew extends State<NotificationsNew> {
                         return InkWellWidget(
                           title: notification.category,
                           subtitle: notification.body,
+                          seen: notification.seen,
                           screen: NotificationDetails(
                             title: notification.category,
                             body: notification.body,
