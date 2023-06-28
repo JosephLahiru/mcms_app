@@ -13,14 +13,14 @@ import 'package:http/http.dart' as http;
 
 import 'notification_details.dart';
 
-class NotificationsNew extends StatefulWidget {
-  const NotificationsNew({Key? key}) : super(key: key);
+class Notifications extends StatefulWidget {
+  const Notifications({Key? key}) : super(key: key);
 
   @override
-  State<NotificationsNew> createState() => _NotificationsNew();
+  State<Notifications> createState() => _NotificationsNew();
 }
 
-class _NotificationsNew extends State<NotificationsNew> {
+class _NotificationsNew extends State<Notifications> {
   Future<List<Notifi>> notifiFuture = getNotifi();
 
   static Future<List<Notifi>> getNotifi() async {
@@ -224,7 +224,7 @@ class _NotificationsNew extends State<NotificationsNew> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NotificationsNew()),
+                  MaterialPageRoute(builder: (context) => Notifications()),
                 );
               },
             ),

@@ -8,7 +8,7 @@ import 'package:mcms_app/screens/view_all_products.dart';
 import 'package:mcms_app/screens/view_expire.dart';
 import 'package:mcms_app/screens/view_stocklow.dart';
 
-import 'notifications_new.dart';
+import 'notifications.dart';
 
 class InventoryDetails extends StatefulWidget {
   const InventoryDetails({Key? key}) : super(key: key);
@@ -375,7 +375,7 @@ class _InventoryDetails extends State<InventoryDetails> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NotificationsNew()),
+                  MaterialPageRoute(builder: (context) => Notifications()),
                 );
               },
             ),

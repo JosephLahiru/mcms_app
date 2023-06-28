@@ -7,7 +7,7 @@ import 'dart:convert';
 
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
-import 'package:mcms_app/screens/notifications_new.dart';
+import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports.dart';
 
 class View_Monthly_Report extends StatefulWidget {
@@ -320,7 +320,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NotificationsNew()),
+                  MaterialPageRoute(builder: (context) => Notifications()),
                 );
               },
             ),

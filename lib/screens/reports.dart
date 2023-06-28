@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
-import 'package:mcms_app/screens/notifications_new.dart';
+import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports_daily.dart';
 import 'package:mcms_app/screens/reports_monthly.dart';
 import 'package:mcms_app/screens/reports_weekly.dart';
@@ -430,7 +430,7 @@ class _ReportsState extends State<Reports> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NotificationsNew()),
+                  MaterialPageRoute(builder: (context) => Notifications()),
                 );
               },
             ),

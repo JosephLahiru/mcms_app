@@ -4,12 +4,12 @@ import 'package:http/http.dart' as http;
 
 import 'inventory_details.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'notifications_new.dart';
+import 'notifications.dart';
 
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 
-  List<Widget> screens = [NotificationsNew(), InventoryDetails(), Reports()];
+  List<Widget> screens = [Notifications(), InventoryDetails(), Reports()];
   List<String> views = ["Notifications", "Inventory", "Reports"];
   List<String> images = ["notification.png", "Inventory.png", "report.png"];
   String drName = "Harsha";
@@ -109,7 +109,7 @@ class Dashboard extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NotificationsNew()),
+                  MaterialPageRoute(builder: (context) => Notifications()),
                 );
               },
             ),
