@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InkWellWidget extends StatelessWidget {
   final Widget screen;
-  String title, subtitle;
+  String title, subtitle, seen;
   IconData leadingIcon, trailingIcon;
   Color listTileColor, iconColor, listTileBorderColor;
 
@@ -13,6 +13,7 @@ class InkWellWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.subtitle,
+    required this.seen,
     this.leadingIcon = FontAwesomeIcons.prescriptionBottleMedical,
     this.trailingIcon = Icons.forward,
     this.listTileColor = Colors.lightGreenAccent,
@@ -86,7 +87,7 @@ class InkWellWidget extends StatelessWidget {
                           leadingIcon,
                           size: 50.0,
                         ),
-                        SizedBox(width: 30),
+                        SizedBox(width: 20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -118,7 +119,16 @@ class InkWellWidget extends StatelessWidget {
                                 ),
                               ),
                           ],
-                        )
+                        ),
+                        SizedBox(width: 20),
+                        Text(
+                          seen == "0" ? "new" : "",
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                   ],
