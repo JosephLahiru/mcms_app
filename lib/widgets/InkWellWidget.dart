@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:http/http.dart' as http;
 
 class InkWellWidget extends StatelessWidget {
   final Widget screen;
-  String title, subtitle;
+  int not_id;
+  String title, subtitle, seen;
   IconData leadingIcon, trailingIcon;
   Color listTileColor, iconColor, listTileBorderColor;
 
   InkWellWidget({
     super.key,
+    required this.not_id,
     required this.title,
     required this.subtitle,
+    required this.seen,
     this.leadingIcon = FontAwesomeIcons.prescriptionBottleMedical,
     this.trailingIcon = Icons.forward,
     this.listTileColor = Colors.lightGreenAccent,
@@ -47,6 +51,13 @@ class InkWellWidget extends StatelessWidget {
     final height = words.length > 6 ? 110.0 : 90.0;
 
     return InkWell(
+      onTap: () async {
+        await markNotificationAsSeen(not_id);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => screen),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
         child: Container(
@@ -86,7 +97,7 @@ class InkWellWidget extends StatelessWidget {
                           leadingIcon,
                           size: 50.0,
                         ),
-                        SizedBox(width: 30),
+                        SizedBox(width: 15),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -118,7 +129,23 @@ class InkWellWidget extends StatelessWidget {
                                 ),
                               ),
                           ],
-                        )
+                        ),
+                        SizedBox(width: 15),
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: seen == "0" ? Colors.red : Colors.transparent,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            seen == "0" ? "new" : "",
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -128,12 +155,15 @@ class InkWellWidget extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => screen),
-        );
-      },
     );
+  }
+
+  Future<void> markNotificationAsSeen(int id) async {
+    const url = 'http://158.101.10.103/update_seen_status';
+    final response = await http.post(Uri.parse(url), body: {'not_id': id.toString()});
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to mark notification as seen');
+    }
   }
 }

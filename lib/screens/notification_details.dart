@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:mcms_app/screens/dashboard.dart';
-import 'package:mcms_app/screens/notifications.dart';
+import 'package:mcms_app/screens/inventory_details.dart';
 import 'package:mcms_app/screens/reports.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'notifications_new.dart';
+import 'notifications.dart';
 
 class NotificationDetails extends StatefulWidget {
   String title, body, description;
@@ -79,7 +79,7 @@ class _NotificationDetailsState extends State<NotificationDetails> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NotificationsNew()),
+                  MaterialPageRoute(builder: (context) => InventoryDetails()),
                 );
               },
             ),
