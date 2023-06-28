@@ -171,17 +171,20 @@ class _NotificationsNew extends State<NotificationsNew> {
                       itemCount: notifications.length,
                       itemBuilder: (context, index) {
                         final notification = notifications[index];
-                        return InkWellWidget(
-                          title: notification.category,
-                          subtitle: notification.body,
-                          seen: notification.seen,
-                          screen: NotificationDetails(
+                        return InkWell(
+                          child: InkWellWidget(
+                            not_id: notification.not_id,
                             title: notification.category,
-                            body: notification.body,
-                            description: notification.description ?? '',
+                            subtitle: notification.body,
+                            seen: notification.seen,
+                            screen: NotificationDetails(
+                              title: notification.category,
+                              body: notification.body,
+                              description: notification.description ?? '',
+                            ),
+                            listTileColor: Colors.purpleAccent.shade400,
+                            listTileBorderColor: Colors.purpleAccent.shade700,
                           ),
-                          listTileColor: Colors.purpleAccent.shade400,
-                          listTileBorderColor: Colors.purpleAccent.shade700,
                         );
                       },
                     ),
