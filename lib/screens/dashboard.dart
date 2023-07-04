@@ -107,6 +107,7 @@ class Dashboard extends StatelessWidget {
               leading: Icon(Icons.notifications),
               title: Text("Notifications"),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Notifications()),

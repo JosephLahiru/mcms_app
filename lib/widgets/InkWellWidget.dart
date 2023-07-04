@@ -53,6 +53,7 @@ class InkWellWidget extends StatelessWidget {
     return InkWell(
       onTap: () async {
         await markNotificationAsSeen(not_id);
+        Navigator.of(context).pop();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => screen),
