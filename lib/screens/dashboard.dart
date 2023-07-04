@@ -12,7 +12,7 @@ class Dashboard extends StatelessWidget {
   List<Widget> screens = [Notifications(), InventoryDetails(), Reports()];
   List<String> views = ["Notifications", "Inventory", "Reports"];
   List<String> images = ["notification.png", "Inventory.png", "report.png"];
-  String drName = "Harsha";
+  String drName = "Nilantha";
   String drPic = "assets/images/dr.png";
 
   Future<int> getUnseenNotificationsCount() async {
@@ -107,6 +107,7 @@ class Dashboard extends StatelessWidget {
               leading: Icon(Icons.notifications),
               title: Text("Notifications"),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Notifications()),

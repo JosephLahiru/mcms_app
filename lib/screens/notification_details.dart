@@ -125,6 +125,10 @@ class _NotificationDetailsState extends State<NotificationDetails> {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Notifications()),
+                    );
                   },
                   child: Icon(
                     FontAwesomeIcons.arrowLeft,

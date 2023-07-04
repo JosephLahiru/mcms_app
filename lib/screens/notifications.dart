@@ -101,6 +101,10 @@ class _NotificationsNew extends State<Notifications> {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Dashboard()),
+                    );
                   },
                   child: Icon(
                     FontAwesomeIcons.arrowLeft,
