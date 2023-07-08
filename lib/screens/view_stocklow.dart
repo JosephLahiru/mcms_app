@@ -165,13 +165,13 @@ class _ViewLowStock extends State<ViewLowStock> {
                                     Row(
                                       children: [
                                         Icon(
-                                          FontAwesomeIcons.medkit,
+                                          FontAwesomeIcons.suitcaseMedical,
                                           size: 50.0,
                                           color: textColorBody,
                                         ),
                                         SizedBox(width: 30),
                                         Text(
-                                          "Small Quantity\nItems",
+                                          "Essential meds",
                                           style: TextStyle(
                                             fontSize: 25.0,
                                             color: textColorBody,
@@ -235,7 +235,7 @@ class _ViewLowStock extends State<ViewLowStock> {
                                     Row(
                                       children: [
                                         Icon(
-                                          FontAwesomeIcons.medkit,
+                                          FontAwesomeIcons.suitcaseMedical,
                                           size: 50.0,
                                           color: textColorBody,
                                         ),
@@ -243,7 +243,7 @@ class _ViewLowStock extends State<ViewLowStock> {
                                           width: 30.0,
                                         ),
                                         Text(
-                                          "Medium Quantity\nItems",
+                                          "Standard inventory",
                                           style: TextStyle(
                                             fontSize: 25.0,
                                             color: textColorBody,
@@ -307,7 +307,7 @@ class _ViewLowStock extends State<ViewLowStock> {
                                     Row(
                                       children: [
                                         Icon(
-                                          FontAwesomeIcons.medkit,
+                                          FontAwesomeIcons.suitcaseMedical,
                                           size: 50.0,
                                           color: textColorBody,
                                         ),
@@ -315,7 +315,7 @@ class _ViewLowStock extends State<ViewLowStock> {
                                           width: 30.0,
                                         ),
                                         Text(
-                                          "Large Quantity\nItems",
+                                          "Bulk supplies",
                                           style: TextStyle(
                                             fontSize: 25.0,
                                             color: textColorBody,
