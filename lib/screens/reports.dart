@@ -185,218 +185,54 @@ class _ReportsState extends State<Reports> {
                 },
               ),
               SizedBox(height: 40),
-              //view daily report
-              InkWell(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    gradient: flutter_gradient.LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        containerColor1.withOpacity(0.8),
-                        containerColor2.withOpacity(0.9),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0),
-                      bottomLeft: Radius.circular(20.0),
-                      bottomRight: Radius.circular(20.0),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: color.AppColors.black
-                            .withOpacity(0.2),
-                        blurRadius: 10,
-                        offset: Offset(5, 10), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 20.0, left: 20.0, right: 20.0, bottom: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.fileContract,
-                                  color: textColorBody,
-                                  size: 30.0,
-                                ),
-                                SizedBox(
-                                  width: 20.0,
-                                ),
-                                Text(
-                                  "View Daily Revenue\nReport",
-                                  style: TextStyle(
-                                    fontSize: 25.0,
-                                    color: textColorBody,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              // Veiw daily repots
+              _buildOptionTile(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Reports_Daily()),
                   );
                 },
+                icon: FontAwesomeIcons.fileContract,
+                size: 60.0,
+                title: "View Daily Revenue\nReport",
+                containerColor1: containerColor1,
+                containerColor2: containerColor2,
+                textColorBody: textColorBody,
               ),
               SizedBox(height: 40),
-              //view weekly report
-              InkWell(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    gradient: flutter_gradient.LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        containerColor1.withOpacity(0.8),
-                        containerColor2.withOpacity(0.9),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0),
-                      bottomLeft: Radius.circular(20.0),
-                      bottomRight: Radius.circular(20.0),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: color.AppColors.black
-                            .withOpacity(0.2),
-                        blurRadius: 10,
-                        offset: Offset(5, 10), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 20.0, left: 20.0, right: 20.0, bottom: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.fileContract,
-                                  color: textColorBody,
-                                  size: 30.0,
-                                ),
-                                SizedBox(
-                                  width: 20.0,
-                                ),
-                                Text(
-                                  "View Weekly Revenue\nReport",
-                                  style: TextStyle(
-                                    fontSize: 25.0,
-                                    color: textColorBody,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              //Item Expire Soon
+              _buildOptionTile(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Reports_Weekly()),
                   );
                 },
+                icon: FontAwesomeIcons.fileContract,
+                size: 60.0,
+                title: "View Weekly Revenue\nReport",
+                containerColor1: containerColor1,
+                containerColor2: containerColor2,
+                textColorBody: textColorBody,
               ),
               SizedBox(height: 40),
-              //view monthly report
-              InkWell(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    gradient: flutter_gradient.LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        containerColor1.withOpacity(0.8),
-                        containerColor2.withOpacity(0.9),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0),
-                      bottomLeft: Radius.circular(20.0),
-                      bottomRight: Radius.circular(20.0),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: color.AppColors.black
-                            .withOpacity(0.2),
-                        blurRadius: 10,
-                        offset: Offset(5, 10), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 20.0, left: 20.0, right: 20.0, bottom: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.fileContract,
-                                  color: textColorBody,
-                                  size: 30.0,
-                                ),
-                                SizedBox(
-                                  width: 20.0,
-                                ),
-                                Text(
-                                  "View Monthly Revenue\nReport",
-                                  style: TextStyle(
-                                    fontSize: 25.0,
-                                    color: textColorBody,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              //Stock Low
+              _buildOptionTile(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Reports_Monthly()),
                   );
                 },
+                icon: FontAwesomeIcons.fileContract,
+                size: 60.0,
+                title: "View Monthly Revenue\nReport",
+                containerColor1: containerColor1,
+                containerColor2: containerColor2,
+                textColorBody: textColorBody,
               ),
+              SizedBox(height: 40),
             ],
           ),
         ),
@@ -453,6 +289,62 @@ class _ReportsState extends State<Reports> {
                   MaterialPageRoute(builder: (context) => Reports()),
                 );
               },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOptionTile({
+    required Function onTap,
+    required IconData icon,
+    required double size,
+    required String title,
+    required Color containerColor1,
+    required Color containerColor2,
+    required Color textColorBody,
+  }) {
+    return GestureDetector(
+      onTap: () => onTap(),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 100,
+        decoration: BoxDecoration(
+          gradient: flutter_gradient.LinearGradient(
+            begin: Alignment.bottomLeft,
+            end: Alignment.centerRight,
+            colors: [
+              containerColor1.withOpacity(0.8),
+              containerColor2.withOpacity(0.9),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(20.0),
+          boxShadow: [
+            BoxShadow(
+              color: color.AppColors.black.withOpacity(0.2),
+              blurRadius: 10,
+              offset: Offset(5, 10),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: size,
+              color: textColorBody,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 23.0,
+                fontWeight: FontWeight.bold,
+                color: textColorBody,
+              ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
