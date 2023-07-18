@@ -31,6 +31,7 @@ class ViewExpireItems extends StatefulWidget {
 
 class _ViewExpireItems extends State<ViewExpireItems> {
   late Future<List<dynamic>> futureData;
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -51,6 +52,9 @@ class _ViewExpireItems extends State<ViewExpireItems> {
     final containerColor2 = colorScheme.brightness == Brightness.dark
         ? color.AppColors.gradientblackeighth
         : color.AppColors.gradientpurplesecond;
+    final importantColor = colorScheme.brightness == Brightness.dark
+        ? color.AppColors.gold
+        : color.AppColors.gold;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
@@ -97,8 +101,19 @@ class _ViewExpireItems extends State<ViewExpireItems> {
                 ),
               ],
             ),
+            SizedBox(height: 20),
             //search bar for flutter app
-
+            TextField(
+              autofocus: true,
+              controller: searchController,
+              onChanged: (value) {
+                setState(() {}); // Trigger widget rebuild when search text changes
+              },
+              decoration: InputDecoration(
+                labelText: 'Search',
+                prefixIcon: Icon(Icons.search),
+              ),
+            ),
             SizedBox(height: 20),
             Container(
               height: 600.0,
@@ -106,117 +121,142 @@ class _ViewExpireItems extends State<ViewExpireItems> {
               child: FutureBuilder<List<dynamic>>(
                 future: futureData,
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        final data = snapshot.data![index];
-                        return Container(
-                          child: Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  gradient: flutter_gradient.LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      containerColor1.withOpacity(0.8),
-                                      containerColor2.withOpacity(0.9),
-                                    ],
-                                  ),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
-                                      blurRadius: 10,
-                                      offset: Offset(5, 10),
-                                    ),
-                                  ],
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        data['prdct_name'],
-                                        style: TextStyle(
-                                          fontSize: 24.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: textColorBody,
-                                        ),
-                                      ),
-                                      SizedBox(height: 8.0),
-                                      Text(
-                                        data['brand_name'],
-                                        style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: textColorBody,
-                                        ),
-                                      ),
-                                      SizedBox(height: 16.0),
-                                      Text(
-                                        'MFD : ${data['mfd_date'].toString().substring(0, 10)}',
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: textColorBody,
-                                        ),
-                                      ),
-                                      SizedBox(height: 8.0),
-                                      Text(
-                                        'EXP : ${data['exp_date'].toString().substring(0, 10)}',
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: textColorBody,
-                                        ),
-                                      ),
-                                      SizedBox(height: 16.0),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Rs.${data['sell_price']}',
-                                            style: TextStyle(
-                                              fontSize: 20.0,
-                                              fontWeight: FontWeight.bold,
-                                              color: textColorBody,
-                                            ),
-                                          ),
-                                          Text(
-                                            'In Stock: ${data['total_quantity']}',
-                                            style: TextStyle(
-                                              fontSize: 16.0,
-                                              color: textColorBody,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 20.0)
-                            ],
-                          ),
-                        );
-                      },
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.hasError) {
                     return Center(
                       child: Text('${snapshot.error}'),
                     );
                   } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    List<dynamic> filteredData = snapshot.data!;
+
+                    if (searchController.text.isNotEmpty) {
+                      filteredData = snapshot.data!.where((data) {
+                        String productName = data['prdct_name'].toString().toLowerCase();
+                        return productName.contains(searchController.text.toLowerCase());
+                      }).toList();
+                    }
+
+                    if (filteredData.isEmpty) {
+                      return Center(
+                        child: Text('No results found.'),
+                      );
+                    }
+
+                    return SingleChildScrollView( // Wrap the Column with SingleChildScrollView
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                            shrinkWrap: true, // Ensures that the ListView takes only the necessary space
+                            physics: NeverScrollableScrollPhysics(), // Disables ListView scrolling
+                            itemCount: filteredData.length,
+                            itemBuilder: (context, index) {
+                              final data = filteredData[index];
+                              // rest of your code
+                              return Container(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        gradient: flutter_gradient.LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            containerColor1.withOpacity(0.8),
+                                            containerColor2.withOpacity(0.9),
+                                          ],
+                                        ),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20.0),
+                                          topRight: Radius.circular(20.0),
+                                          bottomLeft: Radius.circular(20.0),
+                                          bottomRight: Radius.circular(20.0),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(0.2),
+                                            blurRadius: 10,
+                                            offset: Offset(5, 10),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(16.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              data['prdct_name'],
+                                              style: TextStyle(
+                                                fontSize: 24.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: textColorBody,
+                                              ),
+                                            ),
+                                            SizedBox(height: 8.0),
+                                            Text(
+                                              data['brand_name'],
+                                              style: TextStyle(
+                                                fontSize: 16.0,
+                                                color: textColorBody,
+                                              ),
+                                            ),
+                                            SizedBox(height: 16.0),
+                                            Text(
+                                              'MFD : ${data['mfd_date'].toString().substring(0, 10)}',
+                                              style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: importantColor,
+                                              ),
+                                            ),
+                                            SizedBox(height: 8.0),
+                                            Text(
+                                              'EXP : ${data['exp_date'].toString().substring(0, 10)}',
+                                              style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: importantColor,
+                                              ),
+                                            ),
+                                            SizedBox(height: 16.0),
+                                            Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Rs.${data['sell_price']}',
+                                                  style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: textColorBody,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'In Stock: ${data['total_quantity']}',
+                                                  style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    color: textColorBody,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 20.0)
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                          SizedBox(height: 20.0),
+                        ],
+                      ),
                     );
                   }
                 },

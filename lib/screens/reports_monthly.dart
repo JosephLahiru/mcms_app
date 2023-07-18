@@ -49,7 +49,7 @@ class _Reports_Monthly extends State<Reports_Monthly> {
                   ),
                   SizedBox(width: 10.0),
                   Text(
-                    "Weekly Reports",
+                    "Weekly Report",
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,
@@ -155,7 +155,7 @@ class _Reports_Monthly extends State<Reports_Monthly> {
                     children: [
                       Center(
                         child: Text(
-                          "Select a Date To View\nPast Month Report",
+                          "Select a Date To View\nPast Month Revenue Report",
                           style: TextStyle(
                             fontSize: 20.0,
                             color: textColorBody,
