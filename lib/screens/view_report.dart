@@ -81,7 +81,7 @@ class _View_Report extends State<View_Report> {
                   Expanded(child: Container()),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pop();
+                      Navigator.of(context).pop(true);
                     },
                     child: Icon(
                       FontAwesomeIcons.arrowLeft,
