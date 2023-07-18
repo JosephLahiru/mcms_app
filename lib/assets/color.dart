@@ -79,5 +79,26 @@ class AppColors {
   static const Color tomato = Color(0xFFFF6347);
   static const Color sandyBrown = Color(0xFFF4A460);
   static const Color darkGreen = Color(0xFF006400);
+  static const Color purple1 = Color(0xFFE6E6FA);
+  static const Color purple2 = Color(0xFFD8BFD8);
+  static const Color purple3 = Color(0xFFDDA0DD);
+  static const Color purple4 = Color(0xFFEE82EE);
+  static const Color purple5 = Color(0xFFDA70D6);
+  static const Color purple6 = Color(0xFFFF00FF);
+  static const Color purple7 = Color(0xFFBA55D3);
+  static const Color purple8 = Color(0xFF9370DB);
+  static const Color purple9 = Color(0xFF8A2BE2);
+  static const Color purple10 = Color(0xFF9400D3);
+  static const Color purple11 = Color(0xFF9932CC);
+  static const Color purple12 = Color(0xFF8B008B);
+  static const Color purple13 = Color(0xFF800080);
+  static const Color purple14 = Color(0xFF4B0082);
+  static const Color purple15 = Color(0xFF6A5ACD);
+  static const Color purple16 = Color(0xFF483D8B);
+  static const Color purple17 = Color(0xFF7B68EE);
+  static const Color purple18 = Color(0xFF9370DB);
+  static const Color purple19 = Color(0xFF8A2BE2);
+  static const Color purple20 = Color(0xFF9400D3);
+  //green veriant
 
 }
