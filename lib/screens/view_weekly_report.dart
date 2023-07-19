@@ -8,6 +8,10 @@ import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
 import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pdfWidgets;
+import 'package:printing/printing.dart';
+import 'package:intl/intl.dart';
 
 class View_Weekly_Report extends StatefulWidget {
   final DateTime selectedDate;
@@ -35,6 +39,138 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
     } else {
       throw Exception('Failed to load earnings');
     }
+  }
+
+  Future<pdfWidgets.Document> _generateDocument() async {
+    final pdf = pdfWidgets.Document();
+
+    // Fetch the data
+    final List<dynamic> earnings = await _fetchEarnings();
+
+    var headerStyle = pdfWidgets.TextStyle(
+        fontSize: 20,
+        fontWeight: pdfWidgets.FontWeight.bold,
+        color: PdfColors.blue
+    );
+    var contentStyle = pdfWidgets.TextStyle(fontSize: 14, color: PdfColors.black);
+
+    pdf.addPage(pdfWidgets.Page(
+      margin: pdfWidgets.EdgeInsets.all(50.0),
+      build: (context) => pdfWidgets.Column(
+        crossAxisAlignment: pdfWidgets.CrossAxisAlignment.center,
+        children: earnings.map((earning) {
+          final startDate = widget.selectedDate.subtract(Duration(days: 7));
+          final endDate = widget.selectedDate;
+          return pdfWidgets.Padding(
+            padding: pdfWidgets.EdgeInsets.only(bottom: 50),
+            child: pdfWidgets.Column(
+              crossAxisAlignment: pdfWidgets.CrossAxisAlignment.start,
+              children: [
+                pdfWidgets.Center(
+                  child: pdfWidgets.Container(
+                    margin: pdfWidgets.EdgeInsets.only(bottom: 50),
+                    child: pdfWidgets.Text(
+                      'Revenue report for last 7 days starting at ${DateFormat('dd-MM-yyyy').format(startDate)} ending at ${DateFormat('dd-MM-yyyy').format(endDate)}',
+                      style: headerStyle,
+                    ),
+                  ),
+                ),
+                pdfWidgets.Table(
+                  children: [
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text('Total selling price of freely issued medicine ', style: contentStyle),
+                        ),
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text(': Rs. ${earning['selling_cost_free_med']}', style: contentStyle),
+                        ),
+                      ],
+                    ),
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text('Actual total cost of freely issued medicine', style: contentStyle),
+                        ),
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text(': Rs. ${earning['actual_cost_free_med']}', style: contentStyle),
+                        ),
+                      ],
+                    ),
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text('Total selling price of issued medicine', style: contentStyle),
+                        ),
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text(': Rs. ${earning['selling_cost_issued_med']}', style: contentStyle),
+                        ),
+                      ],
+                    ),
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text('Actual total cost of issued medicine:', style: contentStyle),
+                        ),
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text(': Rs. ${earning['actual_cost_issued_med']}', style: contentStyle),
+                        ),
+                      ],
+                    ),
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(height: 1, color: PdfColors.grey),
+                        pdfWidgets.Container(height: 1, color: PdfColors.grey),
+                      ],
+                    ),
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text('Profit of the day', style: contentStyle),
+                        ),
+                        pdfWidgets.Container(
+                          padding: pdfWidgets.EdgeInsets.all(5.0),
+                          child: pdfWidgets.Text(': Rs. ${earning['total_profit']}', style: contentStyle),
+                        ),
+                      ],
+                    ),
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(height: 1, color: PdfColors.black),
+                        pdfWidgets.Container(height: 1, color: PdfColors.black),
+                      ],
+                    ),
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(height: 3, color: PdfColors.white), // White space
+                        pdfWidgets.Container(height: 3, color: PdfColors.white), // White space
+                      ],
+                    ),
+                    pdfWidgets.TableRow(
+                      children: [
+                        pdfWidgets.Container(height: 1, color: PdfColors.black),
+                        pdfWidgets.Container(height: 1, color: PdfColors.black),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
+    ));
+
+    return pdf;
   }
 
   @override
@@ -271,6 +407,28 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                         child: Text("Rs." + snapshot.data![0]["total_profit"].toString(), style: TextStyle(fontSize: reportBodySize, fontWeight:FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
+                                  ),
+                                  SizedBox(height: 30),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: color.AppColors.purple7,
+                                      onPrimary: textColorBody,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(32.0),
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      final pdf = await _generateDocument();
+
+                                      // Save the document using the [Printing] plugin.
+                                      await Printing.sharePdf(
+                                          bytes: await pdf.save(),
+                                          filename: widget.selectedDate.toString().substring(0, 10)+
+                                              "_weekly_report.pdf"
+                                      );
+                                    },
+                                    child: Text('Save as PDF'),
                                   ),
                                   SizedBox(height: 30),
                                 ],

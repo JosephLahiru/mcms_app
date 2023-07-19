@@ -70,7 +70,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                   child: pdfWidgets.Container(
                     margin: pdfWidgets.EdgeInsets.only(bottom: 50),
                     child: pdfWidgets.Text(
-                      'Profit report for last 30 days starting at ${DateFormat('dd-MM-yyyy').format(startDate)} ending at ${DateFormat('dd-MM-yyyy').format(endDate)}',
+                      'Revenue report for last 30 days starting at ${DateFormat('dd-MM-yyyy').format(startDate)} ending at ${DateFormat('dd-MM-yyyy').format(endDate)}',
                       style: headerStyle,
                     ),
                   ),
@@ -425,7 +425,7 @@ class _View_Monthly_Report extends State<View_Monthly_Report> {
                                       await Printing.sharePdf(
                                           bytes: await pdf.save(),
                                           filename: widget.selectedDate.toString().substring(0, 10)+
-                                              "report.pdf"
+                                              "_monthly_report.pdf"
                                       );
                                     },
                                     child: Text('Save as PDF'),

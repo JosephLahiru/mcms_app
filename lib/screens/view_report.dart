@@ -68,7 +68,7 @@ class _View_Report extends State<View_Report> {
                   child: pdfWidgets.Container(
                     margin: pdfWidgets.EdgeInsets.only(bottom: 50),
                     child: pdfWidgets.Text(
-                      'Profit report of the day ${DateFormat('dd-MM-yyyy').format(DateTime.parse(earning['date']))}',
+                      'Revenue report of the day ${DateFormat('dd-MM-yyyy').format(DateTime.parse(earning['date']))}',
                       style: headerStyle,
                     ),
                   ),
@@ -541,7 +541,7 @@ class _View_Report extends State<View_Report> {
                                       await Printing.sharePdf(
                                         bytes: await pdf.save(),
                                         filename: widget.selectedDate.toString().substring(0, 10)+
-                                            "report.pdf"
+                                            "_daily_report.pdf"
                                       );
                                     },
                                     child: Text('Save as PDF'),
