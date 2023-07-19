@@ -44,7 +44,7 @@ class _ViewExpire extends State<ViewExpire> {
                 ),
                 SizedBox(width: 10.0),
                 Text(
-                  "Inventory",
+                  "Expire soon",
                   style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.w700,

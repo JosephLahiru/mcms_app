@@ -115,6 +115,7 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
             ),
             SizedBox(height: 20),
             TextField(
+              style: TextStyle(color: textColorHeading),
               controller: searchController,
               autofocus: true,
               onChanged: (value) {
@@ -137,12 +138,24 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
                     if (snapshot.hasData) {
                       if (filteredData.isEmpty && searchController.text.isNotEmpty) {
                         return Center(
-                          child: Text(
-                            'No results found',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search_off_rounded,
+                                size: 64,
+                                color: Colors.grey[400],
+                              ),
+                              SizedBox(height: 16),
+                              Text(
+                                "Sorry, No results found!",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: color.AppColors.purple20,
+                                ),
+                              ),
+                            ],
                           ),
                         );
                       }

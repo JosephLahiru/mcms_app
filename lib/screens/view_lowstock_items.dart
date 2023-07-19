@@ -106,6 +106,7 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
               SizedBox(height: 20),
               //search bar for flutter app
               TextField(
+                style: TextStyle(color: textColorHeading),
                 autofocus: true,
                 controller: searchController,
                 onChanged: (value) {
@@ -143,7 +144,25 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
 
                       if (filteredData.isEmpty) {
                         return Center(
-                          child: Text('No results found.'),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search_off_rounded,
+                                size: 64,
+                                color: Colors.grey[400],
+                              ),
+                              SizedBox(height: 16),
+                              Text(
+                                "Sorry, No results found!",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: color.AppColors.purple20,
+                                ),
+                              ),
+                            ],
+                          ),
                         );
                       }
 
