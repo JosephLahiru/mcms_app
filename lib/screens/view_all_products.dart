@@ -277,7 +277,7 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ViewAllProducts()),
+                      builder: (context) => InventoryDetails()),
                 );
               },
             ),
