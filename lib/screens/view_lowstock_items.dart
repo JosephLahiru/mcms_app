@@ -9,10 +9,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
+import 'package:mcms_app/screens/view_single_product.dart';
 
 // Define a function to make the API call and return the data
 Future<List<dynamic>> fetchData(String stockType) async {
-  final response = await http.get(Uri.parse('http://158.101.10.103/get_stock_low/$stockType'));
+  final response = await http
+      .get(Uri.parse('http://158.101.10.103/get_stock_low/$stockType'));
 
   if (response.statusCode != 200) {
     throw Exception('Failed to fetch data');
@@ -24,7 +26,8 @@ Future<List<dynamic>> fetchData(String stockType) async {
 class ViewLowStockItems extends StatefulWidget {
   final String stockType;
 
-  const ViewLowStockItems({Key? key, required this.stockType}) : super(key: key);
+  const ViewLowStockItems({Key? key, required this.stockType})
+      : super(key: key);
 
   @override
   State<ViewLowStockItems> createState() => _ViewLowStockItems();
@@ -44,9 +47,9 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textColorHeading =
-    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
     final textColorBody =
-    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
     final containerColor1 = colorScheme.brightness == Brightness.dark
         ? color.AppColors.gradientblackfifth
         : color.AppColors.gradientpurplefirst;
@@ -60,7 +63,7 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
 
     return Scaffold(
       key: _scaffoldKey,
-      body: SingleChildScrollView( // Wrap the Scaffold with SingleChildScrollView
+      body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(top: 70.0, left: 30.0, right: 30.0),
           child: Column(
@@ -80,13 +83,11 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
                     widget.stockType == '1'
                         ? "Essential meds"
                         : widget.stockType == '2'
-                        ? "Standard inventory"
-                        : "Bulk supplies",
+                            ? "Standard inventory"
+                            : "Bulk supplies",
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,
-                      // Use ColorScheme to change text color based on system color
-                      // Set text color to black by default
                       color: textColorHeading,
                     ),
                   ),
@@ -104,13 +105,12 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
                 ],
               ),
               SizedBox(height: 20),
-              //search bar for flutter app
               TextField(
                 style: TextStyle(color: textColorHeading),
                 autofocus: true,
                 controller: searchController,
                 onChanged: (value) {
-                  setState(() {}); // Trigger widget rebuild when search text changes
+                  setState(() {});
                 },
                 decoration: InputDecoration(
                   labelText: 'Search',
@@ -137,8 +137,10 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
 
                       if (searchController.text.isNotEmpty) {
                         filteredData = snapshot.data!.where((data) {
-                          String productName = data['prdct_name'].toString().toLowerCase();
-                          return productName.contains(searchController.text.toLowerCase());
+                          String productName =
+                              data['prdct_name'].toString().toLowerCase();
+                          return productName
+                              .contains(searchController.text.toLowerCase());
                         }).toList();
                       }
 
@@ -166,111 +168,127 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
                         );
                       }
 
-                      return SingleChildScrollView( // Wrap the Column with SingleChildScrollView
+                      return SingleChildScrollView(
                         child: Column(
                           children: [
                             ListView.builder(
-                              shrinkWrap: true, // Ensures that the ListView takes only the necessary space
-                              physics: NeverScrollableScrollPhysics(), // Disables ListView scrolling
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
                               itemCount: filteredData.length,
                               itemBuilder: (context, index) {
                                 final data = filteredData[index];
-                                // rest of your code
-                                return Container(
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          gradient: flutter_gradient.LinearGradient(
-                                            begin: Alignment.centerLeft,
-                                            end: Alignment.centerRight,
-                                            colors: [
-                                              containerColor1.withOpacity(0.8),
-                                              containerColor2.withOpacity(0.9),
-                                            ],
-                                          ),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20.0),
-                                            topRight: Radius.circular(20.0),
-                                            bottomLeft: Radius.circular(20.0),
-                                            bottomRight: Radius.circular(20.0),
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black.withOpacity(0.2),
-                                              blurRadius: 10,
-                                              offset: Offset(5, 10),
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ViewSingleProduct(product: data, highlightCondition: 'low_stock',)),
+                                    );
+                                  },
+                                  child: Container(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            gradient:
+                                                flutter_gradient.LinearGradient(
+                                              begin: Alignment.centerLeft,
+                                              end: Alignment.centerRight,
+                                              colors: [
+                                                containerColor1
+                                                    .withOpacity(0.8),
+                                                containerColor2
+                                                    .withOpacity(0.9),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(16.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                data['prdct_name'],
-                                                style: TextStyle(
-                                                  fontSize: 24.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: textColorBody,
-                                                ),
-                                              ),
-                                              SizedBox(height: 8.0),
-                                              Text(
-                                                data['brand_name'],
-                                                style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: textColorBody,
-                                                ),
-                                              ),
-                                              SizedBox(height: 16.0),
-                                              Text(
-                                                'MFD : ${data['mfd_date'].toString().substring(0, 10)}',
-                                                style: TextStyle(
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: textColorBody,
-                                                ),
-                                              ),
-                                              SizedBox(height: 8.0),
-                                              Text(
-                                                'EXP : ${data['exp_date'].toString().substring(0, 10)}',
-                                                style: TextStyle(
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: textColorBody,
-                                                ),
-                                              ),
-                                              SizedBox(height: 16.0),
-                                              Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'Rs.${data['sell_price']}',
-                                                    style: TextStyle(
-                                                      fontSize: 20.0,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: textColorBody,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    'In Stock: ${data['total_quantity']}',
-                                                    style: TextStyle(
-                                                      fontSize: 20.0,
-                                                      color: importantColor,
-                                                    ),
-                                                  ),
-                                                ],
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20.0),
+                                              topRight: Radius.circular(20.0),
+                                              bottomLeft: Radius.circular(20.0),
+                                              bottomRight:
+                                                  Radius.circular(20.0),
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(0.2),
+                                                blurRadius: 10,
+                                                offset: Offset(5, 10),
                                               ),
                                             ],
                                           ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(16.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  data['prdct_name'],
+                                                  style: TextStyle(
+                                                    fontSize: 24.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: textColorBody,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 8.0),
+                                                Text(
+                                                  data['brand_name'],
+                                                  style: TextStyle(
+                                                    fontSize: 16.0,
+                                                    color: textColorBody,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 16.0),
+                                                Text(
+                                                  'MFD : ${data['mfd_date'].toString().substring(0, 10)}',
+                                                  style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: textColorBody,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 8.0),
+                                                Text(
+                                                  'EXP : ${data['exp_date'].toString().substring(0, 10)}',
+                                                  style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: textColorBody,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 16.0),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'Rs.${data['sell_price']}',
+                                                      style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: textColorBody,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'In Stock: ${data['total_quantity']}',
+                                                      style: TextStyle(
+                                                        fontSize: 20.0,
+                                                        color: importantColor,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(height: 20.0)
-                                    ],
+                                        SizedBox(height: 20.0)
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
