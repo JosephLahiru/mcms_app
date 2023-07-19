@@ -208,7 +208,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                   Text(
                     "Report",
                     style: TextStyle(
-                      fontSize: 25.0,
+                      fontSize: 30.0,
                       fontWeight: FontWeight.w700,
                       // Use ColorScheme to change text color based on system color
                       // Set text color to black by default
@@ -313,9 +313,36 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                         future: futureEarnings,
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            if (snapshot.data!.isEmpty) {
+                            if (snapshot.data!.isEmpty || snapshot.data![0]["total_earnings"] == null) {
                               return Center(
-                                  child: Text("No data available for selected date"));
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today_outlined,
+                                      size: 64,
+                                      color: Colors.grey[400],
+                                    ),
+                                    SizedBox(height: 16),
+                                    Text(
+                                      "Sorry, there are no records for the selected date.",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: color.AppColors.amber,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "Please try selecting a different date",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: color.AppColors.orange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
                             } else {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -324,7 +351,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                     children: [
                                       Container(
                                         child: Center(
-                                            child: Text("Report For Last Seven Days\nFrom ${widget.selectedDate.toString().substring(0, 10)} ", style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900, color: textColorBody),)),
+                                            child: Text("Report for last seven days\nending at ${widget.selectedDate.toString().substring(0, 10)} ", style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900, color: textColorBody),)),
                                       ),
                                     ],
                                   ),
@@ -332,7 +359,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Selling Price of Freely Issued\n Medicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
+                                        child: Text("Selling price of freely issued\nmedicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -348,7 +375,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Actual Price of Freely Issued\n Medicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
+                                        child: Text("Actual price of freely issued\nmedicine: ", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -364,7 +391,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Selling Price of Issued\nMedicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
+                                        child: Text("Selling price of issued\nMedicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),
@@ -380,7 +407,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                   Row(
                                     children: [
                                       Container(
-                                        child: Text("Actual Price of Issued\n Medicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
+                                        child: Text("Actual price of issued\nmedicine:", style: TextStyle(fontSize: reportHeadingSize, fontWeight: FontWeight.bold, color: textColorBody),),
                                       ),
                                     ],
                                   ),

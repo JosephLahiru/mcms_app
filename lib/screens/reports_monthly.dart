@@ -92,7 +92,7 @@ class _Reports_Monthly extends State<Reports_Monthly> {
                   ),
                   SizedBox(width: 10.0),
                   Text(
-                    "Weekly Report",
+                    "Monthly Report",
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,

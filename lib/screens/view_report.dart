@@ -208,7 +208,7 @@ class _View_Report extends State<View_Report> {
                 Text(
                   "Report",
                   style: TextStyle(
-                    fontSize: 25.0,
+                    fontSize: 30.0,
                     fontWeight: FontWeight.w700,
                     // Use ColorScheme to change text color based on system color
                     // Set text color to black by default
@@ -317,8 +317,34 @@ class _View_Report extends State<View_Report> {
                           if (snapshot.hasData) {
                             if (snapshot.data!.isEmpty) {
                               return Center(
-                                  child: Text(
-                                      "No data available for selected date"));
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today_outlined,
+                                      size: 64,
+                                      color: Colors.grey[400],
+                                    ),
+                                    SizedBox(height: 16),
+                                    Text(
+                                      "Sorry, there are no records for the selected date.",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: color.AppColors.amber,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "Please try selecting a different date",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: color.AppColors.orange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
                             } else {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
