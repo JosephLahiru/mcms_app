@@ -78,10 +78,10 @@ class _ViewLowStockItems extends State<ViewLowStockItems> {
                   SizedBox(width: 10.0),
                   Text(
                     widget.stockType == '1'
-                        ? "Small Quantity"
+                        ? "Essential meds"
                         : widget.stockType == '2'
-                        ? "Medium Quantity"
-                        : "Large Quantity",
+                        ? "Standard inventory"
+                        : "Bulk supplies",
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,
