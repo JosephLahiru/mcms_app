@@ -8,7 +8,6 @@ import 'package:mcms_app/screens/dashboard.dart';
 import 'package:mcms_app/screens/inventory_details.dart';
 import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports.dart';
-import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pdfWidgets;
 import 'package:printing/printing.dart';
