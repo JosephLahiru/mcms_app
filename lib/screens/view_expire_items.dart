@@ -8,6 +8,7 @@ import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:mcms_app/screens/view_single_product.dart';
 
 // Define a function to make the API call and return the data
 Future<List<dynamic>> fetchData(String expireType) async {
@@ -76,10 +77,10 @@ class _ViewExpireItems extends State<ViewExpireItems> {
                 SizedBox(width: 10.0),
                 Text(
                   widget.expireType == '1'
-                      ? "Short Expire"
+                      ? "Short lifespan"
                       : widget.expireType == '2'
-                      ? "Medium Expire"
-                      : "Long Expire",
+                      ? "Medium lifespan"
+                      : "Long lifespan",
                   style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.w700,
@@ -104,6 +105,7 @@ class _ViewExpireItems extends State<ViewExpireItems> {
             SizedBox(height: 20),
             //search bar for flutter app
             TextField(
+              style: TextStyle(color: textColorHeading),
               autofocus: true,
               controller: searchController,
               onChanged: (value) {
@@ -141,7 +143,25 @@ class _ViewExpireItems extends State<ViewExpireItems> {
 
                     if (filteredData.isEmpty) {
                       return Center(
-                        child: Text('No results found.'),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.search_off_rounded,
+                              size: 64,
+                              color: Colors.grey[400],
+                            ),
+                            SizedBox(height: 16),
+                            Text(
+                              "Sorry, No results found!",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: color.AppColors.purple20,
+                              ),
+                            ),
+                          ],
+                        ),
                       );
                     }
 
@@ -155,7 +175,15 @@ class _ViewExpireItems extends State<ViewExpireItems> {
                             itemBuilder: (context, index) {
                               final data = filteredData[index];
                               // rest of your code
-                              return Container(
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ViewSingleProduct(product: data, highlightCondition: 'expire',)),
+                                  );
+                                },
                                 child: Column(
                                   children: [
                                     Container(

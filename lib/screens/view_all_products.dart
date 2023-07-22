@@ -8,6 +8,7 @@ import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:mcms_app/screens/view_single_product.dart';
 
 Future<List<dynamic>> fetchData() async {
   final response = await http.get(Uri.parse('http://158.101.10.103/get_stock'));
@@ -42,14 +43,14 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
       setState(() {
         filteredData = data
             .where((item) =>
-        item['prdct_name']
-            .toString()
-            .toLowerCase()
-            .contains(query.toLowerCase()) ||
-            item['brand_name']
-                .toString()
-                .toLowerCase()
-                .contains(query.toLowerCase()))
+                item['prdct_name']
+                    .toString()
+                    .toLowerCase()
+                    .contains(query.toLowerCase()) ||
+                item['brand_name']
+                    .toString()
+                    .toLowerCase()
+                    .contains(query.toLowerCase()))
             .toList();
       });
     });
@@ -65,9 +66,9 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textColorHeading =
-    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
     final textColorBody =
-    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
+        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
     final containerColor1 = colorScheme.brightness == Brightness.dark
         ? color.AppColors.gradientblackfifth
         : color.AppColors.gradientpurplefirst;
@@ -115,6 +116,7 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
             ),
             SizedBox(height: 20),
             TextField(
+              style: TextStyle(color: textColorHeading),
               controller: searchController,
               autofocus: true,
               onChanged: (value) {
@@ -135,14 +137,27 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
                       : futureData,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      if (filteredData.isEmpty && searchController.text.isNotEmpty) {
+                      if (filteredData.isEmpty &&
+                          searchController.text.isNotEmpty) {
                         return Center(
-                          child: Text(
-                            'No results found',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search_off_rounded,
+                                size: 64,
+                                color: Colors.grey[400],
+                              ),
+                              SizedBox(height: 16),
+                              Text(
+                                "Sorry, No results found!",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: color.AppColors.purple20,
+                                ),
+                              ),
+                            ],
                           ),
                         );
                       }
@@ -150,83 +165,93 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           final data = snapshot.data![index];
-                          return Container(
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    gradient: flutter_gradient.LinearGradient(
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight,
-                                      colors: [
-                                        containerColor1.withOpacity(0.8),
-                                        containerColor2.withOpacity(0.9),
-                                      ],
-                                    ),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20.0),
-                                      topRight: Radius.circular(20.0),
-                                      bottomLeft: Radius.circular(20.0),
-                                      bottomRight: Radius.circular(20.0),
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        blurRadius: 10,
-                                        offset: Offset(5, 10),
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ViewSingleProduct(product: data, highlightCondition: 'all',)),
+                              );
+                            },
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      gradient: flutter_gradient.LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                        colors: [
+                                          containerColor1.withOpacity(0.8),
+                                          containerColor2.withOpacity(0.9),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          data['prdct_name'],
-                                          style: TextStyle(
-                                            fontSize: 24.0,
-                                            fontWeight: FontWeight.bold,
-                                            color: textColorBody,
-                                          ),
-                                        ),
-                                        SizedBox(height: 8.0),
-                                        Text(
-                                          data['brand_name'],
-                                          style: TextStyle(
-                                            fontSize: 16.0,
-                                            color: textColorBody,
-                                          ),
-                                        ),
-                                        SizedBox(height: 16.0),
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Rs.${data['sell_price']}',
-                                              style: TextStyle(
-                                                fontSize: 20.0,
-                                                fontWeight: FontWeight.bold,
-                                                color: textColorBody,
-                                              ),
-                                            ),
-                                            Text(
-                                              'In Stock: ${data['total_quantity']}',
-                                              style: TextStyle(
-                                                fontSize: 16.0,
-                                                color: textColorBody,
-                                              ),
-                                            ),
-                                          ],
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20.0),
+                                        topRight: Radius.circular(20.0),
+                                        bottomLeft: Radius.circular(20.0),
+                                        bottomRight: Radius.circular(20.0),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.2),
+                                          blurRadius: 10,
+                                          offset: Offset(5, 10),
                                         ),
                                       ],
                                     ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(16.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data['prdct_name'],
+                                            style: TextStyle(
+                                              fontSize: 24.0,
+                                              fontWeight: FontWeight.bold,
+                                              color: textColorBody,
+                                            ),
+                                          ),
+                                          SizedBox(height: 8.0),
+                                          Text(
+                                            data['brand_name'],
+                                            style: TextStyle(
+                                              fontSize: 16.0,
+                                              color: textColorBody,
+                                            ),
+                                          ),
+                                          SizedBox(height: 16.0),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Rs.${data['sell_price']}',
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: textColorBody,
+                                                ),
+                                              ),
+                                              Text(
+                                                'In Stock: ${data['total_quantity']}',
+                                                style: TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: textColorBody,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 20.0)
-                              ],
+                                  SizedBox(height: 20.0)
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -276,8 +301,7 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => ViewAllProducts()),
+                  MaterialPageRoute(builder: (context) => InventoryDetails()),
                 );
               },
             ),

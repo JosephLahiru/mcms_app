@@ -7,6 +7,7 @@ import 'package:mcms_app/screens/inventory_details.dart';
 import 'package:mcms_app/screens/notifications.dart';
 import 'package:mcms_app/screens/reports.dart';
 import 'package:mcms_app/screens/view_weekly_report.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class Reports_Weekly extends StatefulWidget {
   const Reports_Weekly({Key? key}) : super(key: key);
@@ -17,17 +18,59 @@ class Reports_Weekly extends StatefulWidget {
 
 class _Reports_Weekly extends State<Reports_Weekly> {
 
+  BoxDecoration _buildGradientBoxDecoration(Color color1, Color color2) {
+    return BoxDecoration(
+      gradient: flutter_gradient.LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.centerRight,
+        colors: [
+          color1.withOpacity(0.8),
+          color2.withOpacity(0.9),
+        ],
+      ),
+      borderRadius: BorderRadius.circular(10.0),
+      boxShadow: [
+        BoxShadow(
+          color: color2.withOpacity(0.2),
+          blurRadius: 40,
+          offset: Offset(8, 10),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGradientContainer(Color color1, Color color2, Widget child) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      decoration: _buildGradientBoxDecoration(color1, color2),
+      child: Align(
+        alignment: Alignment.center,
+        child: child,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textColor =
     colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
-    final textColorHeading =
-    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
-    final textColorBody =
-    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
-    final containerColor1 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackfifth : color.AppColors.gradientpurplefirst;
-    final containerColor2 = colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackeighth : color.AppColors.gradientpurplesecond;
+    final containerColor1 = colorScheme.brightness == Brightness.dark
+        ? color.AppColors.gradientblackfifth
+        : color.AppColors.gradientpurplefirst;
+    final containerColor2 = colorScheme.brightness == Brightness.dark
+        ? color.AppColors.gradientblackeighth
+        : color.AppColors.gradientpurplesecond;
+    final textColorBody = color.AppColors.white;
+    final Color monthCellBackground =
+    colorScheme.brightness == Brightness.dark ? color.AppColors.gradientblackfifth : color.AppColors.purple8;
+    final Color indicatorColor =
+    colorScheme.brightness == Brightness.dark ? const Color(0xFF5CFFB7) : const Color(0xFF1AC4C7);
+    final Color highlightColor =
+    colorScheme.brightness == Brightness.dark ? const Color(0xFF5CFFB7) : color.AppColors.amber;
+    final Color cellTextColor = color.AppColors.white;
+    final Color weekendTextColor = colorScheme.brightness == Brightness.dark ? Color(0xFF5CFFB7) : color.AppColors.orange;
+    final Color weekheaderTextColor = colorScheme.brightness == Brightness.dark ? color.AppColors.skyBlue : color.AppColors.salmon;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
@@ -41,7 +84,7 @@ class _Reports_Weekly extends State<Reports_Weekly> {
                 children: [
                   IconButton(
                     icon: Icon(FontAwesomeIcons.bars),
-                    color: textColorHeading,
+                    color: textColor,
 
                     onPressed: () {
                       _scaffoldKey.currentState!.openDrawer();
@@ -95,8 +138,7 @@ class _Reports_Weekly extends State<Reports_Weekly> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color:
-                          color.AppColors.black.withOpacity(0.2),
+                          color: Colors.black.withOpacity(0.2),
                           blurRadius: 10,
                           offset: Offset(5, 10), // changes position of shadow
                         ),
@@ -120,64 +162,85 @@ class _Reports_Weekly extends State<Reports_Weekly> {
                   ),
                 ],
               ),
-              SizedBox(height: 30),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  gradient: flutter_gradient.LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      containerColor1.withOpacity(0.8),
-                      containerColor2.withOpacity(0.9),
-                    ],
+              SizedBox(height: 20),
+              _buildGradientContainer(
+                containerColor1,
+                containerColor2,
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    "Select a Date To View Past Week Revenue Report",
+                    style: TextStyle(fontSize: 20.0, color: textColorBody, fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.center,
                   ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
-                    bottomLeft: Radius.circular(10.0),
-                    bottomRight: Radius.circular(10.0),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color:
-                      color.AppColors.black.withOpacity(0.2),
-                      blurRadius: 40,
-                      offset: Offset(8, 10),
-                    ),
-                  ],
                 ),
-                child: Container(
-                  padding: const EdgeInsets.only(
-                      top: 20.0, left: 20.0, right: 20.0, bottom: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Text(
-                          "Select a Date To View\nPast Week Revenue Report",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: textColorBody,
-                          ),
+              ),
+              SizedBox(height: 20),
+              _buildGradientContainer(
+                containerColor1,
+                containerColor2,
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: SfDateRangePicker(
+                    selectionShape: DateRangePickerSelectionShape.rectangle,
+                    selectionColor: highlightColor,
+                    selectionTextStyle:
+                    TextStyle(color: color.AppColors.white, fontSize: 18),
+                    minDate: DateTime(2023),
+                    maxDate: DateTime(2030),
+                    selectionMode: DateRangePickerSelectionMode.single,
+                    headerStyle: DateRangePickerHeaderStyle(
+                        textAlign: TextAlign.center,
+                        textStyle: TextStyle(
+                          fontSize: 20,
+                          color: color.AppColors.white,
+                          fontWeight: FontWeight.w700,
+                        )),
+                    monthCellStyle: DateRangePickerMonthCellStyle(
+                        cellDecoration: _MonthCellDecoration(
+                            backgroundColor: monthCellBackground,
+                            showIndicator: false,
+                            indicatorColor: indicatorColor),
+                        todayCellDecoration: _MonthCellDecoration(
+                            borderColor: highlightColor,
+                            backgroundColor: monthCellBackground,
+                            showIndicator: false,
+                            indicatorColor: indicatorColor),
+                        disabledDatesTextStyle: TextStyle(
+                          color: colorScheme.brightness == Brightness.dark ? const Color(0xFF666479) : const Color(0xffe2d7fe),
                         ),
-                      ),
-                      SizedBox(height: 10.0),
-                      CalendarDatePicker(
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2023),
-                        lastDate: DateTime(2030),
-                        onDateChanged: (date) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  View_Weekly_Report(selectedDate: date),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                        weekendTextStyle: TextStyle(
+                          color: weekendTextColor,
+                          fontSize: 18,
+                        ),
+                        textStyle: TextStyle(color: cellTextColor, fontSize: 18),
+                        todayTextStyle: TextStyle(color: highlightColor, fontSize: 18)),
+                    yearCellStyle: DateRangePickerYearCellStyle(
+                      todayTextStyle: TextStyle(color: highlightColor, fontSize: 18),
+                      textStyle: TextStyle(color: cellTextColor, fontSize: 18),
+                      disabledDatesTextStyle: TextStyle(
+                          color: colorScheme.brightness == Brightness.dark ? const Color(0xFF666479) : const Color(0xffe2d7fe)),
+                      leadingDatesTextStyle:
+                      TextStyle(color: cellTextColor.withOpacity(0.5), fontSize: 18),
+                    ),
+                    showNavigationArrow: true,
+                    todayHighlightColor: highlightColor,
+                    monthViewSettings: DateRangePickerMonthViewSettings(
+                      firstDayOfWeek: 1,
+                      viewHeaderStyle: DateRangePickerViewHeaderStyle(
+                          textStyle: TextStyle(
+                              fontSize: 18,
+                              color: weekheaderTextColor,
+                              fontWeight: FontWeight.w600)),
+                    ),
+                    onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => View_Weekly_Report(selectedDate: args.value),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -242,5 +305,67 @@ class _Reports_Weekly extends State<Reports_Weekly> {
         ),
       ),
     );
+  }
+}
+
+/// [_MonthCellDecoration] used to customize the month cell
+class _MonthCellDecoration extends Decoration {
+  const _MonthCellDecoration(
+      {this.borderColor,
+        this.backgroundColor,
+        required this.showIndicator,
+        this.indicatorColor});
+
+  final Color? borderColor;
+  final Color? backgroundColor;
+  final bool showIndicator;
+  final Color? indicatorColor;
+
+  @override
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
+    return _MonthCellDecorationPainter(
+        borderColor: borderColor,
+        backgroundColor: backgroundColor,
+        showIndicator: showIndicator,
+        indicatorColor: indicatorColor);
+  }
+}
+
+/// [_MonthCellDecorationPainter] used to paint month cell decoration.
+class _MonthCellDecorationPainter extends BoxPainter {
+  _MonthCellDecorationPainter(
+      {this.borderColor,
+        this.backgroundColor,
+        required this.showIndicator,
+        this.indicatorColor});
+
+  final Color? borderColor;
+  final Color? backgroundColor;
+  final bool showIndicator;
+  final Color? indicatorColor;
+
+  @override
+  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
+    final Rect bounds = offset & configuration.size!;
+    _drawDecoration(canvas, bounds);
+  }
+
+  void _drawDecoration(Canvas canvas, Rect bounds) {
+    final Paint paint = Paint()..color = backgroundColor!;
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(bounds, const Radius.circular(5)), paint);
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = 1;
+    if (borderColor != null) {
+      paint.color = borderColor!;
+      canvas.drawRRect(
+          RRect.fromRectAndRadius(bounds, const Radius.circular(5)), paint);
+    }
+
+    if (showIndicator) {
+      paint.color = indicatorColor!;
+      paint.style = PaintingStyle.fill;
+      canvas.drawCircle(Offset(bounds.right - 6, bounds.top + 6), 2.5, paint);
+    }
   }
 }
