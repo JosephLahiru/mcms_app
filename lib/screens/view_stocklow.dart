@@ -46,7 +46,7 @@ class _ViewLowStock extends State<ViewLowStock> {
                     ),
                     SizedBox(width: 10.0),
                     Text(
-                      "Low Stock Items",
+                      "Stock low items",
                       style: TextStyle(
                         fontSize: 30.0,
                         fontWeight: FontWeight.w700,
@@ -171,7 +171,7 @@ class _ViewLowStock extends State<ViewLowStock> {
                                         ),
                                         SizedBox(width: 30),
                                         Text(
-                                          "Essential meds",
+                                          "Essential medicine",
                                           style: TextStyle(
                                             fontSize: 25.0,
                                             color: textColorBody,

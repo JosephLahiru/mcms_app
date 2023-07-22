@@ -72,6 +72,7 @@ class _Reports_Daily extends State<Reports_Daily> {
     final Color cellTextColor = color.AppColors.white;
     final Color weekendTextColor = colorScheme.brightness == Brightness.dark ? Color(0xFF5CFFB7) : color.AppColors.orange;
     final Color weekheaderTextColor = colorScheme.brightness == Brightness.dark ? color.AppColors.skyBlue : color.AppColors.salmon;
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       key: _scaffoldKey,
