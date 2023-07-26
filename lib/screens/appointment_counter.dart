@@ -45,8 +45,12 @@ class _AppointmentCounterState extends State<AppointmentCounter> {
   }
 
   void _setAppNum(int num) async {
-    await setAppNum('https://mcms_api.mtron.me/set_app_no/$num');
-    _getAppNum();
+    if (num >= 0 && num <= 99) {
+      await setAppNum('https://mcms_api.mtron.me/set_app_no/$num');
+      _getAppNum();
+    } else {
+      print('Appointment number must be within 0 and 99');
+    }
   }
 
   @override
@@ -84,7 +88,7 @@ class _AppointmentCounterState extends State<AppointmentCounter> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () => _setAppNum(_appNum - 1),
+                  onPressed: _appNum > 0 ? () => _setAppNum(_appNum - 1) : null,
                   child: Text('Previous Appointment'),
                 ),
                 SizedBox(height: 10),
@@ -94,7 +98,8 @@ class _AppointmentCounterState extends State<AppointmentCounter> {
                 ),
                 SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () => _setAppNum(_appNum + 1),
+                  onPressed:
+                      _appNum < 99 ? () => _setAppNum(_appNum + 1) : null,
                   child: Text('Next Appointment'),
                 ),
               ],
