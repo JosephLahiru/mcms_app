@@ -45,7 +45,7 @@ class _AppointmentCounterState extends State<AppointmentCounter> {
   }
 
   void _getAppNum() async {
-    final num = await getAppNum('https://mcms_api.mtron.me/get_app_no');
+    final num = await getAppNum('http://158.101.10.103/get_app_no');
     setState(() {
       _appNum = num;
     });
@@ -53,7 +53,7 @@ class _AppointmentCounterState extends State<AppointmentCounter> {
 
   void _setAppNum(int num) async {
     if (num >= 0 && num <= 99) {
-      await setAppNum('https://mcms_api.mtron.me/set_app_no/$num');
+      await setAppNum('http://158.101.10.103/set_app_no/$num');
       _getAppNum();
     } else {
       print('Appointment number must be within 0 and 99');
