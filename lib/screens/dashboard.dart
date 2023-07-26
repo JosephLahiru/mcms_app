@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mcms_app/screens/appointment_counter.dart';
 import 'package:mcms_app/widgets/appdrawer.dart';
 import 'package:mcms_app/screens/reports.dart';
 import 'package:http/http.dart' as http;
@@ -9,14 +10,25 @@ import 'notifications.dart';
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
 
-  List<Widget> screens = [Notifications(), InventoryDetails(), Reports()];
-  List<String> views = ["Notifications", "Inventory", "Reports"];
-  List<String> images = ["notification.png", "Inventory.png", "report.png"];
+  List<Widget> screens = [
+    Notifications(),
+    InventoryDetails(),
+    Reports(),
+    AppointmentCounter()
+  ];
+  List<String> views = ["Notifications", "Inventory", "Reports", "Counter"];
+  List<String> images = [
+    "notification.png",
+    "Inventory.png",
+    "report.png",
+    "counter.png"
+  ];
   String drName = "Nilantha";
   String drPic = "assets/images/dr.png";
 
   Future<int> getUnseenNotificationsCount() async {
-    final response = await http.get(Uri.parse('http://158.101.10.103/get_seen_count'));
+    final response =
+        await http.get(Uri.parse('http://158.101.10.103/get_seen_count'));
 
     if (response.statusCode == 200) {
       return int.parse(response.body);
@@ -27,6 +39,19 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+//     final colorScheme = Theme.of(context).colorScheme;
+//     final textColorHeading =
+//         colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+//     final textColorBody =
+//         colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
+//     final containerColor1 = colorScheme.brightness == Brightness.dark
+//         ? color.AppColors.gradientblackfifth
+//         : color.AppColors.gradientpurplefirst;
+//     final containerColor2 = colorScheme.brightness == Brightness.dark
+//         ? color.AppColors.gradientblackeighth
+//         : color.AppColors.gradientpurplesecond;
+//     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -99,7 +124,8 @@ class Dashboard extends StatelessWidget {
                     elevation: 6,
                     child: Stack(
                       children: [
-                        Center( // Center the Column
+                        Center(
+                          // Center the Column
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -112,7 +138,8 @@ class Dashboard extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 4.0),
                                 child: Text(
                                   views[index],
-                                  style: TextStyle(color: Colors.white, fontSize: 25),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 25),
                                 ),
                               ),
                             ],
@@ -122,7 +149,8 @@ class Dashboard extends StatelessWidget {
                           FutureBuilder<int>(
                             future: getUnseenNotificationsCount(),
                             builder: (context, snapshot) {
-                              if (snapshot.connectionState == ConnectionState.waiting) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
                                 return CircularProgressIndicator();
                               } else if (snapshot.hasError) {
                                 return Icon(Icons.error);
