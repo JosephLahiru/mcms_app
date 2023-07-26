@@ -3,6 +3,7 @@ import 'package:mcms_app/assets/color.dart' as color;
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'dart:math';
 
 class InkWellWidget extends StatelessWidget {
   final Widget screen;
@@ -27,14 +28,14 @@ class InkWellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (title == "Expiry") {
-      leadingIcon = FontAwesomeIcons.triangleExclamation;
-    } else if (title == "Medicine") {
-      leadingIcon = FontAwesomeIcons.prescriptionBottle;
-    } else if (title == "Stock") {
-      leadingIcon = FontAwesomeIcons.box;
+    if (title == "expiresoon") {
+      leadingIcon = FontAwesomeIcons.hourglassHalf;
+    } else if (title == "stock") {
+      leadingIcon = FontAwesomeIcons.cubes;
+    } else if (title == "expired") {
+      leadingIcon = FontAwesomeIcons.hourglassEnd;
     } else {
-      leadingIcon = FontAwesomeIcons.clipboardQuestion;
+      leadingIcon = FontAwesomeIcons.circleQuestion;
     }
 
     final colorScheme = Theme.of(context).colorScheme;
@@ -48,7 +49,7 @@ class InkWellWidget extends StatelessWidget {
         : color.AppColors.gradientpurplesecond;
 
     final words = subtitle.split(' ');
-    final height = words.length > 6 ? 110.0 : 90.0;
+    final height = words.length > 6 ? 140.0 : 120.0;
 
     return InkWell(
       onTap: () async {
@@ -98,31 +99,35 @@ class InkWellWidget extends StatelessWidget {
                           leadingIcon,
                           size: 50.0,
                         ),
-                        SizedBox(width: 15),
+                        SizedBox(width: 25),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (words.length > 0)
                               Text(
-                                words.sublist(0, 3).join(' '),
+                                words
+                                    .sublist(0, min(2, words.length))
+                                    .join(' '),
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: textColorBody,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            if (words.length > 3)
+                            if (words.length > 2)
                               Text(
-                                words.sublist(3, 6).join(' '),
+                                words
+                                    .sublist(2, min(4, words.length))
+                                    .join(' '),
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: textColorBody,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            if (words.length > 6)
+                            if (words.length > 4)
                               Text(
-                                words.sublist(6).join(' '),
+                                words.sublist(4).join(' '),
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: textColorBody,
@@ -131,11 +136,12 @@ class InkWellWidget extends StatelessWidget {
                               ),
                           ],
                         ),
-                        SizedBox(width: 15),
+                        SizedBox(width: 25),
                         Container(
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: seen == "0" ? Colors.red : Colors.transparent,
+                            color:
+                                seen == "0" ? Colors.red : Colors.transparent,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
@@ -161,7 +167,8 @@ class InkWellWidget extends StatelessWidget {
 
   Future<void> markNotificationAsSeen(int id) async {
     const url = 'http://158.101.10.103/update_seen_status';
-    final response = await http.post(Uri.parse(url), body: {'not_id': id.toString()});
+    final response =
+        await http.post(Uri.parse(url), body: {'not_id': id.toString()});
 
     if (response.statusCode != 200) {
       throw Exception('Failed to mark notification as seen');
