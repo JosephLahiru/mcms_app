@@ -9,7 +9,7 @@ import 'package:mcms_app/screens/view_single_product.dart';
 
 // Define a function to make the API call and return the data
 Future<List<dynamic>> fetchData(String expireType) async {
-  final response = await http.get(Uri.parse('http://158.101.10.103/get_expire/$expireType'));
+  final response = await http.get(Uri.parse('http://158.101.10.103/get_expire_soon/$expireType'));
 
   if (response.statusCode != 200) {
     throw Exception('Failed to fetch data');

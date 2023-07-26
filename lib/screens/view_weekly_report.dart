@@ -310,7 +310,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                         future: futureEarnings,
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            if (snapshot.data!.isEmpty || snapshot.data![0]["total_earnings"] == null) {
+                            if (snapshot.data!.isEmpty ) {
                               return Center(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
