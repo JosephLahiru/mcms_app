@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/screens/appointment_counter.dart';
+import 'package:mcms_app/widgets/appdrawer.dart';
 import 'package:mcms_app/screens/reports.dart';
 import 'package:http/http.dart' as http;
 
 import 'inventory_details.dart';
-import 'package:mcms_app/assets/color.dart' as color;
 import 'notifications.dart';
 
 class Dashboard extends StatelessWidget {
@@ -39,18 +39,19 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textColorHeading =
-        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
-    final textColorBody =
-        colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
-    final containerColor1 = colorScheme.brightness == Brightness.dark
-        ? color.AppColors.gradientblackfifth
-        : color.AppColors.gradientpurplefirst;
-    final containerColor2 = colorScheme.brightness == Brightness.dark
-        ? color.AppColors.gradientblackeighth
-        : color.AppColors.gradientpurplesecond;
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+//     final colorScheme = Theme.of(context).colorScheme;
+//     final textColorHeading =
+//         colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
+//     final textColorBody =
+//         colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
+//     final containerColor1 = colorScheme.brightness == Brightness.dark
+//         ? color.AppColors.gradientblackfifth
+//         : color.AppColors.gradientpurplefirst;
+//     final containerColor2 = colorScheme.brightness == Brightness.dark
+//         ? color.AppColors.gradientblackeighth
+//         : color.AppColors.gradientpurplesecond;
+//     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       appBar: AppBar(
@@ -91,63 +92,7 @@ class Dashboard extends StatelessWidget {
           ),
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: containerColor1.withOpacity(0.8),
-              ),
-              accountName: Text("Dr. Harsha"),
-              accountEmail: Text("harsha@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                foregroundImage: AssetImage('assets/images/dr.png'),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Dashboard"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text("Notifications"),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.inventory),
-              title: Text("Inventory"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InventoryDetails()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.document_scanner),
-              title: Text("Reports"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Reports()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
       body: Column(
         children: [
           Padding(padding: EdgeInsets.only(top: 20)),
