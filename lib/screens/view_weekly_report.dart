@@ -3,11 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:http/http.dart' as http;
+import 'package:mcms_app/widgets/appdrawer.dart';
 import 'dart:convert';
-import 'package:mcms_app/screens/dashboard.dart';
-import 'package:mcms_app/screens/inventory_details.dart';
-import 'package:mcms_app/screens/notifications.dart';
-import 'package:mcms_app/screens/reports.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pdfWidgets;
 import 'package:printing/printing.dart';
@@ -313,7 +310,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                         future: futureEarnings,
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            if (snapshot.data!.isEmpty || snapshot.data![0]["total_earnings"] == null) {
+                            if (snapshot.data!.isEmpty ) {
                               return Center(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -438,8 +435,8 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                   SizedBox(height: 30),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      primary: color.AppColors.purple7,
-                                      onPrimary: textColorBody,
+                                      backgroundColor: color.AppColors.purple7,
+                                      foregroundColor: textColorBody,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(32.0),
@@ -477,62 +474,7 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
           ),
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: containerColor1.withOpacity(0.8),
-              ),
-              accountName: Text("Dr. Harsha"),
-              accountEmail: Text("harsha@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                foregroundImage: AssetImage('assets/images/dr.png'),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Dashboard"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text("Notifications"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.inventory),
-              title: Text("Inventory"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InventoryDetails()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.document_scanner),
-              title: Text("Reports"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Reports()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
     );
   }
 }

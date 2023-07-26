@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/screens/dashboard.dart';
-import 'package:mcms_app/screens/inventory_details.dart';
-import 'package:mcms_app/screens/notifications.dart';
-import 'package:mcms_app/screens/reports.dart';
+import 'package:mcms_app/widgets/appdrawer.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -35,8 +32,9 @@ class _ViewSingleProductState extends State<ViewSingleProduct> {
     final containerColor2 = colorScheme.brightness == Brightness.dark
         ? color.AppColors.gradientblackeighth
         : color.AppColors.gradientpurplesecond;
-    final DateTime? parsedDateM = DateTime.tryParse(widget.product['mfd_date']);
-    final DateTime? parsedDateE = DateTime.tryParse(widget.product['exp_date']);
+    final DateTime? parsedDateM = widget.product['mfd_date'] != null ? DateTime.tryParse(widget.product['mfd_date']) : null;
+    final DateTime? parsedDateE = widget.product['exp_date'] != null ? DateTime.tryParse(widget.product['exp_date']) : null;
+    final DateTime? parsedDateP = widget.product['purchased_date'] != null ? DateTime.tryParse(widget.product['purchased_date']) : null;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -112,24 +110,16 @@ class _ViewSingleProductState extends State<ViewSingleProduct> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  _buildRow('Brand Name',
-                                      '${widget.product['brand_name']}', 'brand_name'),
-                                  _buildRow('Product Name',
-                                      '${widget.product['prdct_name']}', 'prdct_name'),
-                                  _buildRow('Product Description',
-                                      '${widget.product['description']}', 'description'),
-                                  _buildRow('Manufactured Date',
-                                      '${parsedDateM != null ? DateFormat('dd-MM-yyyy').format(parsedDateM) : 'Invalid date'}', 'mfd_date'),
-                                  _buildRow('Expiry Date',
-                                      '${parsedDateE != null ? DateFormat('dd-MM-yyyy').format(parsedDateE) : 'Invalid date'}', 'exp_date'),
-                                  _buildRow('Acquisition Price',
-                                      'Rs. ${widget.product['ac_price']}', 'ac_price'),
-                                  _buildRow('Selling Price',
-                                      'Rs. ${widget.product['sell_price']}', 'sell_price'),
-                                  _buildRow('Total Quantity',
-                                      '${widget.product['total_quantity']}', 'total_quantity'),
-                                  _buildRow('Medicine Type',
-                                      '${widget.product['med_type']}', 'med_type'),
+                                  _buildRow('Brand Name', '${widget.product['brand_name'] ?? 'N/A'}', 'brand_name'),
+                                  _buildRow('Product Name', '${widget.product['prdct_name'] ?? 'N/A'}', 'prdct_name'),
+                                  _buildRow('Product Description', '${widget.product['description'] ?? 'N/A'}', 'description'),
+                                  _buildRow('Manufactured Date', '${parsedDateM != null ? DateFormat('dd-MM-yyyy').format(parsedDateM) : 'Invalid date'}', 'mfd_date'),
+                                  _buildRow('Expiry Date', '${parsedDateE != null ? DateFormat('dd-MM-yyyy').format(parsedDateE) : 'Invalid date'}', 'exp_date'),
+                                  _buildRow('Purchased Date', '${parsedDateP != null ? DateFormat('dd-MM-yyyy').format(parsedDateP) : 'Invalid date'}', 'purchased_date'),
+                                  _buildRow('Acquisition Price', 'Rs. ${widget.product['ac_price'] ?? 'N/A'}', 'ac_price'),
+                                  _buildRow('Selling Price', 'Rs. ${widget.product['sell_price'] ?? 'N/A'}', 'sell_price'),
+                                  _buildRow('Total Quantity', '${widget.product['total_quantity'] ?? 'N/A'}', 'total_quantity'),
+                                  _buildRow('Medicine Type', '${widget.product['med_type'] ?? 'N/A'}', 'med_type'),
                                   _buildRow(
                                       'Stock Type',
                                       '${widget.product['stock_type'] == '1' ? "Essential meds" : widget.product['stock_type'] == '2' ? "Standard inventory" : "Bulk supplies"}', 'stock_type'),
@@ -150,62 +140,7 @@ class _ViewSingleProductState extends State<ViewSingleProduct> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: containerColor1.withOpacity(0.8),
-              ),
-              accountName: Text("Dr. Harsha"),
-              accountEmail: Text("harsha@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                foregroundImage: AssetImage('assets/images/dr.png'),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Dashboard"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.inventory),
-              title: Text("Inventory"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InventoryDetails()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text("Notifications"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.receipt),
-              title: Text("Reports"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Reports()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
     );
   }
 
