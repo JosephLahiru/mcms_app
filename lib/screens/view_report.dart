@@ -351,7 +351,7 @@ class _View_Report extends State<View_Report> {
                                       Container(
                                         child: Center(
                                             child: Text(
-                                          "Report of The " +
+                                          "Report of the day\n" +
                                               snapshot.data![0]["date"]
                                                   .toString()
                                                   .substring(0, 10),
@@ -398,7 +398,7 @@ class _View_Report extends State<View_Report> {
                                     children: [
                                       Container(
                                         child: Text(
-                                          "Selling Price of Freely Issued\nMedicine: ",
+                                          "Selling price of freely issued\nmedicine: ",
                                           style: TextStyle(
                                               fontSize: reportHeadingSize,
                                               fontWeight: FontWeight.bold,
@@ -429,7 +429,7 @@ class _View_Report extends State<View_Report> {
                                     children: [
                                       Container(
                                         child: Text(
-                                          "Actual Price of Freely Issued\nMedicine: ",
+                                          "Actual price of freely issued\nmedicine: ",
                                           style: TextStyle(
                                               fontSize: reportHeadingSize,
                                               fontWeight: FontWeight.bold,
@@ -460,7 +460,7 @@ class _View_Report extends State<View_Report> {
                                     children: [
                                       Container(
                                         child: Text(
-                                          "Selling Price of Issued\nMedicine:",
+                                          "Selling price of issued\nmedicine:",
                                           style: TextStyle(
                                               fontSize: reportHeadingSize,
                                               fontWeight: FontWeight.bold,
@@ -491,7 +491,7 @@ class _View_Report extends State<View_Report> {
                                     children: [
                                       Container(
                                         child: Text(
-                                          "Actual Price of Issued\nMedicine:",
+                                          "Actual price of issued\nmedicine:",
                                           style: TextStyle(
                                               fontSize: reportHeadingSize,
                                               fontWeight: FontWeight.bold,
@@ -522,7 +522,7 @@ class _View_Report extends State<View_Report> {
                                     children: [
                                       Container(
                                         child: Text(
-                                          "Profit of The Day: ",
+                                          "Profit of the day: ",
                                           style: TextStyle(
                                               fontSize: reportHeadingSize,
                                               fontWeight: FontWeight.bold,
