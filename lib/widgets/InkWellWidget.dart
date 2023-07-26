@@ -49,7 +49,7 @@ class InkWellWidget extends StatelessWidget {
         : color.AppColors.gradientpurplesecond;
 
     final words = subtitle.split(' ');
-    final height = words.length > 6 ? 140.0 : 120.0;
+    final height = words.length > 6 ? 130.0 : 120.0;
 
     return InkWell(
       onTap: () async {
@@ -66,6 +66,9 @@ class InkWellWidget extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: height,
           decoration: BoxDecoration(
+            border: Border.all(
+                color: seen == "0" ? Colors.blue : Colors.transparent,
+                width: 3),
             gradient: flutter_gradient.LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -125,6 +128,17 @@ class InkWellWidget extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                            // if (words.length > 4)
+                            //   Text(
+                            //     words
+                            //         .sublist(4, min(6, words.length))
+                            //         .join(' '),
+                            //     style: TextStyle(
+                            //       fontSize: 20.0,
+                            //       color: textColorBody,
+                            //       fontWeight: FontWeight.bold,
+                            //     ),
+                            //   ),
                             if (words.length > 4)
                               Text(
                                 words.sublist(4).join(' '),
@@ -136,23 +150,7 @@ class InkWellWidget extends StatelessWidget {
                               ),
                           ],
                         ),
-                        SizedBox(width: 25),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color:
-                                seen == "0" ? Colors.red : Colors.transparent,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            seen == "0" ? "new" : "",
-                            style: TextStyle(
-                              fontSize: 15.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                        SizedBox(width: 15),
                       ],
                     ),
                   ],
