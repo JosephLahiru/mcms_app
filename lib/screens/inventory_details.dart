@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/screens/dashboard.dart';
-import 'package:mcms_app/screens/reports.dart';
+import 'package:mcms_app/widgets/appdrawer.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/screens/view_all_products.dart';
 import 'package:mcms_app/screens/view_expire.dart';
 import 'package:mcms_app/screens/view_stocklow.dart';
-
-import 'notifications.dart';
 
 class InventoryDetails extends StatefulWidget {
   const InventoryDetails({Key? key}) : super(key: key);
@@ -159,7 +156,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                           MaterialPageRoute(builder: (context) => ViewLowStock()),
                         );
                       },
-                      icon: FontAwesomeIcons.shoppingCart,
+                      icon: FontAwesomeIcons.cartShopping,
                       size: 60.0,
                       title: "Items going to \nbe out of stock \nsoon",
                       containerColor1: containerColor1,
@@ -174,62 +171,7 @@ class _InventoryDetails extends State<InventoryDetails> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: containerColor1.withOpacity(0.8),
-              ),
-              accountName: Text("Dr. Harsha"),
-              accountEmail: Text("harsha@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                foregroundImage: AssetImage('assets/images/dr.png'),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Dashboard"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text("Notifications"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.inventory),
-              title: Text("Inventory"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InventoryDetails()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.document_scanner),
-              title: Text("Reports"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Reports()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
     );
   }
 
