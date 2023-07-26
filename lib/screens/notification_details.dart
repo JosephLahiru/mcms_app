@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/screens/appdrawer.dart';
+import 'package:mcms_app/widgets/appdrawer.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -27,8 +27,6 @@ class _NotificationDetailsState extends State<NotificationDetails> {
     final colorScheme = Theme.of(context).colorScheme;
     final textColorHeading =
     colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
-    final textColorBody =
-    colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
     final containerColor1 = colorScheme.brightness == Brightness.dark
         ? color.AppColors.gradientblackfifth
         : color.AppColors.gradientpurplefirst;

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/screens/appdrawer.dart';
+import 'package:mcms_app/widgets/appdrawer.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/screens/view_all_products.dart';
 import 'package:mcms_app/screens/view_expire.dart';
 import 'package:mcms_app/screens/view_stocklow.dart';
-
-import 'notifications.dart';
 
 class InventoryDetails extends StatefulWidget {
   const InventoryDetails({Key? key}) : super(key: key);
@@ -158,7 +156,7 @@ class _InventoryDetails extends State<InventoryDetails> {
                           MaterialPageRoute(builder: (context) => ViewLowStock()),
                         );
                       },
-                      icon: FontAwesomeIcons.shoppingCart,
+                      icon: FontAwesomeIcons.cartShopping,
                       size: 60.0,
                       title: "Items going to \nbe out of stock \nsoon",
                       containerColor1: containerColor1,

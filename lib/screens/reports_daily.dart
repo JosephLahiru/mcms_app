@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/screens/appdrawer.dart';
+import 'package:mcms_app/widgets/appdrawer.dart';
 import 'package:mcms_app/screens/view_report.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
@@ -14,7 +14,6 @@ class Reports_Daily extends StatefulWidget {
 }
 
 class _Reports_Daily extends State<Reports_Daily> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   BoxDecoration _buildGradientBoxDecoration(Color color1, Color color2) {
     return BoxDecoration(

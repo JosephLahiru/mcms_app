@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mcms_app/assets/color.dart' as color;
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:http/http.dart' as http;
-import 'package:mcms_app/screens/appdrawer.dart';
+import 'package:mcms_app/widgets/appdrawer.dart';
 import 'dart:convert';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pdfWidgets;
@@ -435,8 +435,8 @@ class _View_Weekly_Report extends State<View_Weekly_Report> {
                                   SizedBox(height: 30),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      primary: color.AppColors.purple7,
-                                      onPrimary: textColorBody,
+                                      backgroundColor: color.AppColors.purple7,
+                                      foregroundColor: textColorBody,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(32.0),
