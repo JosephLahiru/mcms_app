@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcms_app/assets/color.dart' as color;
-import 'package:mcms_app/screens/dashboard.dart';
-import 'package:mcms_app/screens/inventory_details.dart';
-import 'package:mcms_app/screens/notifications.dart';
-import 'package:mcms_app/screens/reports.dart';
+import 'package:mcms_app/screens/appdrawer.dart';
 import 'package:mcms_app/screens/view_monthly_report.dart';
 import 'package:flutter/src/painting/gradient.dart' as flutter_gradient;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -248,62 +245,7 @@ class _Reports_Monthly extends State<Reports_Monthly> {
           ),
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: containerColor1.withOpacity(0.8),
-              ),
-              accountName: Text("Dr. Harsha"),
-              accountEmail: Text("harsha@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                foregroundImage: AssetImage('assets/images/dr.png'),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Dashboard"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Dashboard()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text("Notifications"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Notifications()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.inventory),
-              title: Text("Inventory"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InventoryDetails()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.document_scanner),
-              title: Text("Reports"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Reports()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
     );
   }
 }
