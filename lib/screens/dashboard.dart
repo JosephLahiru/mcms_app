@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mcms_app/screens/appointment_counter.dart';
 import 'package:mcms_app/widgets/appdrawer.dart';
@@ -6,10 +8,43 @@ import 'package:http/http.dart' as http;
 import 'inventory_details.dart';
 import 'notifications.dart';
 
-class Dashboard extends StatelessWidget {
+Future<List<dynamic>> fetchData() async {
+  final response = await http.post(
+    Uri.parse('http://158.101.10.103/request_token/'),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({"username": "admin", "password": "adminpwd@1234!"}),
+  );
+
+  if (response.statusCode != 200) {
+    throw Exception('Failed to fetch data');
+  }
+
+  final token = jsonDecode(response.body)['token'];
+
+  final adminDetailsResponse = await http.get(
+    Uri.parse('http://158.101.10.103/get_admin_details'),
+    headers: {'Authorization': 'Bearer $token'},
+  );
+
+  if (adminDetailsResponse.statusCode != 200) {
+    throw Exception('Failed to fetch admin details');
+  }
+
+  final adminDetails = jsonDecode(adminDetailsResponse.body);
+
+  return adminDetails;
+}
+
+class Dashboard extends StatefulWidget {
   Dashboard({Key? key}) : super(key: key);
 
-  List<Widget> screens = [
+  @override
+  _DashboardState createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+
+List<Widget> screens = [
     Notifications(),
     InventoryDetails(),
     Reports(),
@@ -22,8 +57,27 @@ class Dashboard extends StatelessWidget {
     "report.png",
     "counter.png"
   ];
-  String drName = "Nilantha";
-  String drPic = "assets/images/dr.png";
+
+  String drName = "";
+  String drPic = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getAdminData();
+  }
+
+  Future<void> getAdminData() async {
+    final adminDetails = await fetchData();
+
+    if (adminDetails.isNotEmpty) {
+      Map<String, dynamic> firstAdmin = adminDetails[0];
+      setState(() {
+        drName = firstAdmin['first_name'];
+        drPic = firstAdmin['profilepicture'];
+      });
+    }
+  }
 
   Future<int> getUnseenNotificationsCount() async {
     final response =
@@ -67,7 +121,7 @@ class Dashboard extends StatelessWidget {
                   ),
                   CircleAvatar(
                     radius: 70,
-                    backgroundImage: AssetImage(drPic),
+                    backgroundImage: NetworkImage(drPic),
                   )
                 ],
               ),
