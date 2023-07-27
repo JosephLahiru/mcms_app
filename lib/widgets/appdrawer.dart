@@ -67,10 +67,11 @@ class _AppDrawerState extends State<AppDrawer> {
             decoration: BoxDecoration(
               color: containerColor1.withOpacity(0.8),
             ),
-            accountName: Text('Dr.' + (_adminDetails['first_name'] ?? 'N/A')),
+            accountName: Text('Dr. ' + (_adminDetails['first_name'] ?? 'N/A')),
             accountEmail: Text(_adminDetails['email'] ?? 'N/A'),
             currentAccountPicture: CircleAvatar(
-              foregroundImage: AssetImage('assets/images/dr.png'),
+              foregroundImage: NetworkImage(_adminDetails['profilepicture'] ??
+                  'https://drive.google.com/uc?id=1rNJqlaknJv26FuhcbD4o4R4h4DDghTeT'),
             ),
           ),
           ListTile(
