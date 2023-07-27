@@ -3,7 +3,6 @@ import 'package:mcms_app/screens/appointment_counter.dart';
 import 'package:mcms_app/widgets/appdrawer.dart';
 import 'package:mcms_app/screens/reports.dart';
 import 'package:http/http.dart' as http;
-
 import 'inventory_details.dart';
 import 'notifications.dart';
 
@@ -39,19 +38,6 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-//     final colorScheme = Theme.of(context).colorScheme;
-//     final textColorHeading =
-//         colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black;
-//     final textColorBody =
-//         colorScheme.brightness == Brightness.dark ? Colors.white : Colors.white;
-//     final containerColor1 = colorScheme.brightness == Brightness.dark
-//         ? color.AppColors.gradientblackfifth
-//         : color.AppColors.gradientpurplefirst;
-//     final containerColor2 = colorScheme.brightness == Brightness.dark
-//         ? color.AppColors.gradientblackeighth
-//         : color.AppColors.gradientpurplesecond;
-//     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       appBar: AppBar(
